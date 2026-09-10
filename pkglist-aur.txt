@@ -1,0 +1,4 @@
+google-chrome
+visual-studio-code-bin
+yay
+yay-debug
