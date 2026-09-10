@@ -1,6 +1,19 @@
 dar_uma_geral() {
     echo "==> 🧹 Iniciando a geral no sistema..."
-    
+
+    # 1. Checa se o kernel LTS está instalado como segurança
+    if ! pacman -Qs linux-lts &>/dev/null; then
+        echo -e "⚠️  [Dica] Kernel LTS não encontrado. Recomendado instalar para emergências: 'sudo pacman -S linux-lts linux-lts-headers'"
+    fi
+
+    # 2. Verifica se há arquivos .pacnew pendentes de mesclagem
+    local pacnews=$(pacman -Qtdq 2>/dev/null; FIND_PACNEW=$(find /etc -regextype posix-extended -regex ".*\.pac(new|save)" 2>/dev/null))
+    if [ -n "$FIND_PACNEW" ]; then
+        echo -e "\n⚠️  [Atenção] Existem arquivos .pacnew/.pacsave pendentes de revisão:"
+        echo "$FIND_PACNEW"
+        echo "👉 Rode 'sudo pacdiff' quando puder para resolver conflitos de config."
+    fi
+
     echo -e "\n--> 📦 Atualizando pacotes do Pacman..."
     sudo pacman -Syu --noconfirm
 
@@ -22,9 +35,9 @@ dar_uma_geral() {
         echo "Nenhum pacote órfão encontrado."
     fi
 
-    echo -e "\n--> 🗑️ Limpando cache de pacotes e arquivos residuais..."
-    # rm com 2>/dev/null evita o aviso do Zsh caso não existam arquivos download-*
+    echo -e "\n--> 🗑️ Limpando cache de pacotes (mantendo versões atuais para rollback)..."
     sudo rm -f /var/cache/pacman/pkg/download-* 2>/dev/null
+    # Preserva pacotes instalados e remove apenas o cache antigo
     sudo pacman -Sc --noconfirm
     if command -v yay &> /dev/null; then
         yay -Sc --noconfirm
