@@ -23,8 +23,8 @@ dar_uma_geral() {
     fi
 
     echo -e "\n--> 🗑️ Limpando cache de pacotes e arquivos residuais..."
-    # Força a remoção de downloads corrompidos/incompletos antes de limpar o cache
-    sudo rm -f /var/cache/pacman/pkg/download-*
+    # rm com 2>/dev/null evita o aviso do Zsh caso não existam arquivos download-*
+    sudo rm -f /var/cache/pacman/pkg/download-* 2>/dev/null
     sudo pacman -Sc --noconfirm
     if command -v yay &> /dev/null; then
         yay -Sc --noconfirm
