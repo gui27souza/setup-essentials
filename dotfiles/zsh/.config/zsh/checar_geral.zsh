@@ -1,4 +1,5 @@
 # Mostra no terminal quantos updates estão esperando (sem baixar nem atualizar)
+# e sincroniza a lista de pacotes instalados no repositório.
 checar_geral() {
 
     echo -e ""
@@ -23,6 +24,11 @@ checar_geral() {
         echo -e "✨ \033[1;32mSistema totalmente atualizado!\033[0m"
     fi
 
+    # Sincroniza e verifica se há novos pacotes para adicionar aos pkg lists
+    if command -v sync_pkglist &> /dev/null; then
+        echo -e "\n--------------------------------------------------"
+        sync_pkglist
+    fi
 
     echo -e "\n--------------------------------------------------"
     check_dotfiles_status

@@ -19,6 +19,7 @@ nano
 network-manager-applet
 oxygen
 oxygen-sounds
+pacman-contrib
 plasma-bigscreen
 plasma-browser-integration
 plasma-desktop
