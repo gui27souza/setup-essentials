@@ -36,12 +36,13 @@ dar_uma_geral() {
     fi
 
     echo -e "\n--> 🗑️ Limpando cache de pacotes (mantendo versões atuais para rollback)..."
-    sudo rm -f /var/cache/pacman/pkg/download-* 2>/dev/null
     # Preserva pacotes instalados e remove apenas o cache antigo
     sudo pacman -Sc --noconfirm
     if command -v yay &> /dev/null; then
         yay -Sc --noconfirm
     fi
+    # Remove arquivos de download temporários incompletos que sobraram
+    sudo rm -f /var/cache/pacman/pkg/download-* 2>/dev/null
 
     echo -e "\n--------------------------------------------------"
     check_dotfiles_status
