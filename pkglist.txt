@@ -1,6 +1,8 @@
+aspell-pt
 base
 bluez-utils
 breeze-plymouth
+calc
 dolphin
 firefox
 flatpak-kcm
