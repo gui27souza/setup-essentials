@@ -17,11 +17,9 @@ for app in */; do
 done
 cd ..
 
-echo "==> 3. Configurando Scripts de Sistema e Hooks..."
-sudo cp scripts/update-efi-kernel.sh /usr/local/bin/
-sudo chmod +x /usr/local/bin/update-efi-kernel.sh
-
-sudo mkdir -p /etc/pacman.d/hooks
-sudo cp system/pacman-hooks/*.hook /etc/pacman.d/hooks/
+echo "==> 3. Permissões de Scripts..."
+chmod +x scripts/*.sh 2>/dev/null || true
 
 echo "==> Setup concluído com sucesso!"
+echo "Dica: Para configurar o boot UEFI nesta máquina hospedeira, execute:"
+echo "  sudo ./scripts/setup-refind-boot.sh"
