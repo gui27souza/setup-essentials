@@ -8,6 +8,7 @@ firefox
 flatpak-kcm
 htop
 intel-ucode
+jq
 kde-gtk-config
 kdeplasma-addons
 kgamma
