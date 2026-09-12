@@ -19,7 +19,7 @@ sync_dotfiles() {
     echo "--> Fazendo commit e push..."
     git add .
     git commit -m "chore(auto): backup dos dotfiles em $(date +'%Y-%m-%d %H:%M')"
-    git push origin main
+    git push
 
     echo "==> ✨ Dotfiles sincronizados com o GitHub!"
     cd - > /dev/null
