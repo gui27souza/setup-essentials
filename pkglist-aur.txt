@@ -1,3 +1,4 @@
+antigravity-cli
 google-chrome
 hunspell-pt-br
 visual-studio-code-bin
