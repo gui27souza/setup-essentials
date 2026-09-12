@@ -1,3 +1,5 @@
+# ZSH_DESC - Realiza atualização geral de pacotes de forma segura
+
 dar_uma_geral() {
     echo "==> 🧹 Iniciando a geral no sistema..."
 

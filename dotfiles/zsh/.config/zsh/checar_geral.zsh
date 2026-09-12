@@ -1,5 +1,8 @@
+# ZSH_DESC - Mostra updates pendentes e sincroniza lista de pacotes no repositório
+
 # Mostra no terminal quantos updates estão esperando (sem baixar nem atualizar)
 # e sincroniza a lista de pacotes instalados no repositório.
+
 checar_geral() {
 
     echo -e ""

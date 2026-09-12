@@ -2,6 +2,11 @@
 
 Gerenciador de dotfiles, scripts de manutenção do sistema e automações para **Arch Linux**.
 
+Para listagem de comandos, utilize:
+```
+esquecii
+```
+
 ---
 
 ### 📂 Estrutura do Repositório

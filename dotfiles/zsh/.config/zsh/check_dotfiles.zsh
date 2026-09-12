@@ -1,3 +1,5 @@
+# ZSH_DESC - Verifica se há mudanças não commitadas no repositório
+
 check_dotfiles_status() {
     local DOTFILES_DIR="$HOME/projetos-git/setup-essentials"
     if [ -d "$DOTFILES_DIR/.git" ]; then
