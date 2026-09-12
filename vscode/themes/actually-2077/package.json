@@ -4,6 +4,7 @@
   "description": "Dark Theme inspired by Cyberpunk 2077",
   "publisher": "gui27souza",
   "version": "1.0.0",
+  "license": "MIT",
   "engines": { "vscode": "^1.50.0" },
   "categories": ["Themes"],
   "contributes": {
