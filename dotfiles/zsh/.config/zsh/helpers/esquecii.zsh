@@ -3,9 +3,38 @@
 zsh_funcs="$HOME/projetos-git/setup-essentials/dotfiles/zsh/.config/zsh"
 
 esquecii() {
-    for entry in `ls $zsh_funcs`; do
-        local description=$(grep "^# ZSH_DESC - " "$zsh_funcs/$entry")
+
+    _formulate_entry() {
+        local entry=$1
+        local sub_dir=$2
+        
+        local description=$(grep "^# ZSH_DESC - " "$entry")
         description=${description#\# ZSH_DESC - }
-        echo "${entry%.*} - $description"
+        
+        if [[ "$sub_dir" == "true" ]]; then
+            echo "  ${${entry%.*}##*/} - $description"
+        else
+            echo "${${entry%.*}##*/} - $description"
+        fi
+    }
+
+    for entry in `ls $zsh_funcs`; do
+
+        # Se dir
+        if [ -d $entry ]; then
+            echo "\n$entry"
+            local sub_dir="$zsh_funcs/$entry"
+            for sub_entry in `find $sub_dir -name "*.zsh"`; do
+                _formulate_entry "$sub_entry" "true"
+            done
+        
+        # Se file
+        elif [ -f $entry ]; then
+            echo
+            _formulate_entry $entry "false"
+        fi
+        
     done
+
+    echo
 }
