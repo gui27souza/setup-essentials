@@ -6,7 +6,7 @@ Esta pasta concentra todas as automações, atalhos e rotinas do terminal dividi
 
 ### 📂 Estrutura de Diretórios
 
-* **`apps/`**: Atalhos e inicializadores de aplicações de terminal (`open_agy`, `open_lazygit`).
+* **`apps/`**: Atalhos e inicializadores de aplicações de terminal (`open_konsole`, `open_with_new_konsole`, `open_agy`, `open_lazygit`).
 * **`git/`**: Scripts de sincronização e validação dos dotfiles com o repositório remoto (`sync_dotfiles`, `check_dotfiles`).
 * **`helpers/`**: Comandos de auxílio, help interativo e utilitários rápidos (`esquecii`).
 * **`system/`**: Rotinas essenciais de manutenção do Arch Linux e gestão de pacotes (`dar_uma_geral`, `checar_geral`, `sync_pkglist`).
@@ -27,13 +27,16 @@ Ao executar `esquecii` no terminal, o script varre todas as subpastas, lê essa 
 
 ### ➕ Como Adicionar um Novo Comando
 
+> [!IMPORTANT]
+> **A Regra de Ouro (1 comando por arquivo)**: O nome do arquivo `.zsh` deve ser **estritamente idêntico ao nome da função** (ex: `open_konsole.zsh` deve declarar `open_konsole()`). Isso é essencial para que o `esquecii` documente o nome exato que o usuário vai digitar no terminal.
+
 1. Escolha ou crie a pasta da categoria apropriada (ex: `apps/`, `system/`, etc.).
 2. Crie o arquivo `<nome_do_comando>.zsh`.
-3. Adicione o cabeçalho descritivo na primeira linha:
+3. Adicione o cabeçalho descritivo na primeira linha e declare a função com o mesmo nome:
    ```zsh
    # ZSH_DESC - Minha nova automação incrível
 
-   minha_funcao() {
+   nome_do_comando() {
        echo "Executando..."
    }
    ```
