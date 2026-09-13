@@ -4,11 +4,11 @@ bluez-utils
 breeze-plymouth
 btop
 calc
-cmake
 dolphin
 firefox
 flatpak-kcm
 gimp
+hyprland
 intel-ucode
 jq
 kde-gtk-config
