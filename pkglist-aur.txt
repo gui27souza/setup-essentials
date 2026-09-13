@@ -1,7 +1,14 @@
 antigravity-cli
+apg
+apg-debug
+byobu
+ccze
+ccze-debug
 google-chrome
+hollywood
 hunspell-pt-br
 konsave
+speedometer
 visual-studio-code-bin
 yay
 yay-debug
