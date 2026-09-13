@@ -1,72 +1,54 @@
 # 🛠️ setup-essentials
 
-Gerenciador de dotfiles, scripts de manutenção do sistema e automações para **Arch Linux**.
-
-Para listagem de comandos, utilize:
-```
-esquecii
-```
+Ambiente **Arch Linux portátil, modular e reproduzível** para uso multi-máquina via SSD externo.
 
 ---
 
-### 📂 Estrutura do Repositório
+### 🎯 Filosofia & Propósito
 
-* **dotfiles/zsh/**: Configurações do Zsh (`.zshrc`) e funções modulares.
-* **scripts/**: Scripts e automações, como configuração do bootloader rEFInd para SSD externo portátil.
-* **pkglist.txt / pkglist-aur.txt**: Listas de pacotes oficiais e do AUR sincronizados.
-* **pkglist-ignore.txt**: Deny-list de pacotes e dependências ignorados nas verificações.
-* **manual_instalations.md**: Guia de softwares e ferramentas instalados fora dos gerenciadores.
-
----
-
-### ⚡ Funções Principais
-
-#### 1. `checar_geral`
-Checagem passiva e rápida do sistema. Verifica atualizações pendentes no Pacman e AUR sem alterar pacotes, roda a verificação do `sync_pkglist` e exibe o status dos dotfiles.
-
-#### 2. `dar_uma_geral`
-Rotina completa de manutenção do Arch Linux. Realiza as seguintes etapas:
-* Atualização completa dos pacotes oficiais via Pacman.
-* Atualização dos pacotes do AUR via Yay.
-* Atualização e remoção de Flatpaks não utilizados.
-* Detecção e remoção limpa de pacotes órfãos.
-* Limpeza de caches mantendo versões atuais para rollback de emergência.
-
-#### 3. `sync_pkglist`
-Módulo interativo de sincronização de pacotes. Detecta softwares novos instalados no sistema e permite decidir interativamente se devem ir para o repositório (`pkglist.txt`), para a deny-list (`pkglist-ignore.txt`) ou se serão pulados.
-
-#### 4. `sync_dotfiles`
-Sincroniza automaticamente as listas de pacotes e empurra as alterações locais dos dotfiles para o repositório Git remoto com timestamp no commit.
-
-#### 5. `check_dotfiles_status`
-Valida se existem alterações pendentes no repositório local em relação ao remoto.
+* **Portabilidade Real**: O sistema operacional vive no SSD externo e roda nativamente em múltiplos computadores, sem tocar no sistema operacional nativo dos PCs e sem perder a prioridade de boot na BIOS.
+* **Restauração Pós-Desastre**: Recuperação completa do ambiente — pacotes oficiais, AUR, dotfiles e automações — com uma única execução do script de instalação.
+* **Governança de Pacotes**: Controle ativo entre softwares essenciais e dependências temporárias através de listas sincronizadas (`pkglist.txt`) e deny-list (`pkglist-ignore.txt`).
+* **Modularidade**: Configurações desacopladas via GNU Stow e rotinas modulares organizadas por domínio.
+* **Descoberta Dinâmica**: Nada de comandos esquecidos ou documentações pesadas no README. No terminal, basta digitar:
+  ```bash
+  esquecii
+  ```
 
 ---
 
-### 🛠️ Instalação e Uso
+### 🚀 Instalação Rápida
 
-Para clonar e aplicar os symlinks de configuração na sua máquina:
-
-```
+#### 1. Restaurar Dotfiles e Pacotes (Máquina Nova ou Reparo)
+```bash
 git clone https://github.com/gui27souza/setup-essentials.git
 cd setup-essentials
 chmod +x install.sh
 ./install.sh
 ```
 
-#### 🚀 Boot Portátil Multi-PC (Dual-Boot Limpo)
-Para habilitar o boot do Arch via SSD externo na máquina hospedeira sem perder a ordem da BIOS:
-
+#### 2. Configurar Bootloader na Máquina Hospedeira (Opcional / Por PC)
+Para habilitar o boot limpo via rEFInd na partição interna de um novo computador sem perder a ordem da BIOS:
 ```bash
-sudo ./scripts/setup-refind-boot.sh
+sudo ./scripts/boot/setup-refind-boot.sh
 ```
+
+---
+
+### 📂 Estrutura do Repositório
+
+| Módulo | Descrição |
+| :--- | :--- |
+| [**`dotfiles/zsh/`**](dotfiles/zsh/.config/README.md) | Configurações do Zsh e funções modulares categorizadas (`apps`, `git`, `helpers`, `system`). |
+| [**`scripts/boot/`**](scripts/boot/README.md) | Automação do rEFInd para inicialização portátil em máquinas hospedeiras. |
+| [**`vscode/`**](vscode/README.md) | Tema e customizações de interface para o VS Code. |
+| [**`manual_instalations.md`**](manual_instalations.md) | Registro de ferramentas instaladas fora dos gerenciadores de pacote. |
+| [**`TO-DO.md`**](TO-DO.md) | Backlog de ideias e melhorias para o ambiente. |
 
 ---
 
 ### 📌 Pré-requisitos
 
-Para suporte completo a todos os recursos das rotinas, certifique-se de ter instalado:
-
-```
-sudo pacman -S pacman-contrib yay flatpak git
+```bash
+sudo pacman -S --needed pacman-contrib yay flatpak git stow
 ```

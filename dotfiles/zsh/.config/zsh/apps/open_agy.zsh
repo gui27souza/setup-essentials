@@ -1,4 +1,4 @@
-# ZSH_DESC - Abre o antogravity-cli em uma nova janela do terminal
+# ZSH_DESC - Abre o antigravity-cli em uma nova janela do terminal
 
 open_agy() {
     konsole -e agy &|
