@@ -6,10 +6,10 @@ Esta pasta concentra todas as automações, atalhos e rotinas do terminal dividi
 
 ### 📂 Estrutura de Diretórios
 
-* **`apps/`**: Atalhos e inicializadores de aplicações de terminal (`open_konsole`, `open_with_new_konsole`, `open_agy`, `open_lazygit`).
-* **`git/`**: Scripts de sincronização e validação dos dotfiles com o repositório remoto (`sync_dotfiles`, `check_dotfiles`).
-* **`helpers/`**: Comandos de auxílio, help interativo e utilitários rápidos (`esquecii`).
-* **`system/`**: Rotinas essenciais de manutenção do Arch Linux e gestão de pacotes (`dar_uma_geral`, `checar_geral`, `sync_pkglist`).
+* **`apps/`**: Atalhos e inicializadores de aplicações de terminal.
+* **`git/`**: Scripts de sincronização e validação dos dotfiles com o repositório remoto.
+* **`helpers/`**: Comandos de auxílio, help interativo e utilitários rápidos.
+* **`system/`**: Rotinas essenciais de manutenção do Arch Linux e gestão de pacotes.
 
 ---
 
