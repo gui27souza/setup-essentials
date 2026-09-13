@@ -4,36 +4,47 @@ zsh_funcs="$HOME/.config/zsh"
 
 esquecii() {
 
-    _formulate_entry() {
-        local entry=$1
-        local sub_dir=$2
+    # Imprime a entrada formatada com indentação baseada na profundidade
+    _print_entry() {
+        local file=$1
+        local depth=$2
+        local indent=$(printf '  %.0s' $(seq 1 $depth))
 
-        local description=$(grep "^# ZSH_DESC - " "$entry")
+        local description=$(grep "^# ZSH_DESC - " "$file")
         description=${description#\# ZSH_DESC - }
 
-        if [[ "$sub_dir" == "true" ]]; then
-            echo "  ${${entry%.*}##*/} - $description"
-        else
-            echo "${${entry%.*}##*/} - $description"
-        fi
+        echo "${indent}${${file%.*}##*/} - $description"
     }
 
-    for entry in `ls $zsh_funcs`; do
+    # Varre recursivamente um diretório, exibindo cabeçalhos de grupo e arquivos
+    _recursive_scan() {
+        local dir=$1
+        local depth=${2:-0}
+        local indent=$(printf '  %.0s' $(seq 1 $depth))
 
-        # Se dir
-        if [ -d "$zsh_funcs/$entry" ]; then
-            echo "\n$entry"
-            local sub_dir="$zsh_funcs/$entry"
-            for sub_entry in $(find "$sub_dir" -name "*.zsh"); do
-                _formulate_entry "$sub_entry" "true"
-            done
+        # Arquivos .zsh direto neste nível
+        for file in "$dir"/*.zsh(N); do
+            _print_entry "$file" $depth
+        done
 
-        # Se file
-        elif [[ -f "$zsh_funcs/$entry" && "$entry" == *.zsh ]]; then
-            echo
-            _formulate_entry "$zsh_funcs/$entry" "false"
-        fi
+        # Sub-diretórios
+        for sub in "$dir"/*(N/); do
+            echo "\n${indent}= ${sub##*/} ==="
+            _recursive_scan "$sub" $(( depth + 1 ))
+        done
+    }
 
+    # Arquivos .zsh na raiz
+    for file in "$zsh_funcs"/*.zsh(N); do
+        echo
+        _print_entry "$file" 0
+    done
+
+    # Diretórios na raiz
+    for dir in "$zsh_funcs"/*(N/); do
+        echo "\n= ${dir##*/} ====="
+        _recursive_scan "$dir" 1
+        echo "==="
     done
 
     echo
