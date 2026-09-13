@@ -17,9 +17,4 @@ for app in */; do
 done
 cd ..
 
-echo "==> 3. Permissões de Scripts..."
-chmod +x scripts/*.sh 2>/dev/null || true
-
 echo "==> Setup concluído com sucesso!"
-echo "Dica: Para configurar o boot UEFI nesta máquina hospedeira, execute:"
-echo "  sudo ./scripts/setup-refind-boot.sh"

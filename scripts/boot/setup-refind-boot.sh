@@ -6,6 +6,8 @@ set -e
 # Compatível com Arch Linux em SSD Externo (Multi-PC)
 # ==============================================================================
 
+# TODO - aceitar input de boot padrão - externo ou interno
+
 if [ "$EUID" -ne 0 ]; then
     echo "[-] Erro: Este script precisa ser executado como root."
     echo "    Use: sudo $0"
@@ -56,17 +58,15 @@ REFIND_CONF="/efi/EFI/refind/refind.conf"
 if [ -f "$REFIND_CONF" ]; then
     echo "==> 6. Ajustando opções no $REFIND_CONF..."
     
-    # 1. Sem timeout: espera sua seleção sem contagem regressiva
+    # TODO - aceitar um input do timeout desejado
     sed -i 's/^#\?timeout .*/timeout 0/' "$REFIND_CONF"
-    
-    # 2. Seleção inicial do cursor focada no Arch Linux se disponível, ou Windows
+
     if grep -q "^default_selection" "$REFIND_CONF"; then
         sed -i 's/^default_selection .*/default_selection "vmlinuz,Arch,bootmgfw,Microsoft"/' "$REFIND_CONF"
     else
         echo 'default_selection "vmlinuz,Arch,bootmgfw,Microsoft"' >> "$REFIND_CONF"
     fi
 
-    # 3. Oculta entradas duplicadas/legadas do systemd-boot para menu limpo
     if ! grep -q "dont_scan_dirs.*EFI/systemd" "$REFIND_CONF"; then
         echo 'dont_scan_dirs "EFI/systemd,EFI/arch"' >> "$REFIND_CONF"
         echo 'dont_scan_files "systemd-bootx64.efi,systemd-boot-fallbackx64.efi"' >> "$REFIND_CONF"
