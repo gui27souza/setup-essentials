@@ -6,6 +6,7 @@ calc
 dolphin
 firefox
 flatpak-kcm
+gimp
 htop
 intel-ucode
 jq
