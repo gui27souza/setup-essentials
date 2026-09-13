@@ -7,7 +7,9 @@ Esta pasta concentra todas as automações, atalhos e rotinas do terminal dividi
 ### 📂 Estrutura de Diretórios
 
 * **`apps/`**: Atalhos e inicializadores de aplicações de terminal.
-* **`git/`**: Scripts de sincronização e validação dos dotfiles com o repositório remoto.
+* **`git/`**: Scripts relacionados a git e repositórios.
+    * **`setup_essentials_sync/`**: Scripts de sincronização e validação dos dotfiles com o repositório remoto.
+        * **`kde/`**: Correlatos à configuração do KDE Plasma com konsave.
 * **`helpers/`**: Comandos de auxílio, help interativo e utilitários rápidos.
 * **`system/`**: Rotinas essenciais de manutenção do Arch Linux e gestão de pacotes.
 
