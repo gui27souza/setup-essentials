@@ -4,6 +4,7 @@ bluez-utils
 breeze-plymouth
 btop
 calc
+cmake
 dolphin
 firefox
 flatpak-kcm
