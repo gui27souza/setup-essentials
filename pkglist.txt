@@ -9,6 +9,7 @@ dolphin
 firefox
 flatpak-kcm
 gimp
+htop
 hyprland
 intel-ucode
 jq
@@ -45,6 +46,7 @@ spectacle
 spotify-launcher
 stow
 timeshift
+tree
 union
 wacomtablet
 wget

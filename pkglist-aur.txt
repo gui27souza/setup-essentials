@@ -3,7 +3,6 @@ apg
 byobu
 ccze
 google-chrome
-hollywood
 hunspell-pt-br
 konsave
 speedometer
