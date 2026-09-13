@@ -1,6 +1,7 @@
 antigravity-cli
 google-chrome
 hunspell-pt-br
+konsave
 visual-studio-code-bin
 yay
 yay-debug
