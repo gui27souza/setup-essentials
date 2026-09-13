@@ -31,6 +31,7 @@ esquecii() {
         for sub in "$dir"/*(N/); do
             echo "\n${indent}= ${sub##*/} ==="
             _recursive_scan "$sub" $(( depth + 1 ))
+            echo "${indent}=="
         done
     }
 
