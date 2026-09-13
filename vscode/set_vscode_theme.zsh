@@ -2,8 +2,9 @@
 set -e
 
 # CONFIG
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 THEME_NAME="actually-2077"
-THEME_PATH="$HOME/projetos-git/setup-essentials/vscode/themes/$THEME_NAME"
+THEME_PATH="$SCRIPT_DIR/themes/$THEME_NAME"
 SETTINGS_PATH="$HOME/.config/Code/User/settings.json"
 
 # Checagem de Dependências

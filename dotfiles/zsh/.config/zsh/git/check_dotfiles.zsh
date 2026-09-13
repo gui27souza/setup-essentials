@@ -1,7 +1,7 @@
 # ZSH_DESC - Verifica se há mudanças não commitadas no repositório
 
 check_dotfiles_status() {
-    local DOTFILES_DIR="$HOME/projetos-git/setup-essentials"
+    local DOTFILES_DIR="$SETUP_ESSENTIALS_DIR"
     if [ -d "$DOTFILES_DIR/.git" ]; then
         if [ -n "$(git -C "$DOTFILES_DIR" status --porcelain 2>/dev/null)" ]; then
             echo -e "\033[0;33m⚠️  [Dotfiles] Há alterações pendentes no repositório!\033[0m"

@@ -1,7 +1,7 @@
 # ZSH_DESC - Sincroniza estado do repositório local commitando no remoto
 
 sync_dotfiles() {
-    local DOTFILES_DIR="$HOME/projetos-git/setup-essentials"
+    local DOTFILES_DIR="$SETUP_ESSENTIALS_DIR"
     echo "==> 🚀 Sincronizando dotfiles..."
 
     echo "--> Atualizando listas do Pacman/AUR..."

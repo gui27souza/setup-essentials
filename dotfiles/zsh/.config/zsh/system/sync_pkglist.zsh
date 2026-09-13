@@ -1,7 +1,7 @@
 # ZSH_DESC - Sincroniza pkglist com o estado atual da máquina
 
 sync_pkglist() {
-    local repo_dir="$HOME/projetos-git/setup-essentials"
+    local repo_dir="$SETUP_ESSENTIALS_DIR"
     local pkg_official="$repo_dir/pkglist.txt"
     local pkg_aur="$repo_dir/pkglist-aur.txt"
     local pkg_ignore="$repo_dir/pkglist-ignore.txt"

@@ -5,7 +5,3 @@
 - Refinar pkglist
     - Criar tipos de listas: obrigatorias, opcionais, etc
     - Melhorar experiência do script, escolher oq baixar
-
-- organizar comandos zsh em sub-diretórios organizados
-
-- Lidar com referências de path do repositório ($HOME/projetos-git/setup-essentials) hardcoded

@@ -103,6 +103,9 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# Descobre a raiz do repositório setup-essentials via symlink do Stow
+export SETUP_ESSENTIALS_DIR="$(readlink -f "$HOME/.config/zsh/../../../..")"
+
 # Carrega automaticamente todas as funções modulares da ~/.config/zsh
 if [ -d "$HOME/.config/zsh" ]; then
     for file in "$HOME/.config/zsh"/**/*.zsh(N); do

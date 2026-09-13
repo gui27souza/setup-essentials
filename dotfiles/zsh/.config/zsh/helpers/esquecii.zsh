@@ -1,6 +1,6 @@
 # ZSH_DESC - Mostra esse help
 
-zsh_funcs="$HOME/projetos-git/setup-essentials/dotfiles/zsh/.config/zsh"
+zsh_funcs="$HOME/.config/zsh"
 
 esquecii() {
 
@@ -21,17 +21,17 @@ esquecii() {
     for entry in `ls $zsh_funcs`; do
 
         # Se dir
-        if [ -d $entry ]; then
+        if [ -d "$zsh_funcs/$entry" ]; then
             echo "\n$entry"
             local sub_dir="$zsh_funcs/$entry"
-            for sub_entry in `find $sub_dir -name "*.zsh"`; do
+            for sub_entry in $(find "$sub_dir" -name "*.zsh"); do
                 _formulate_entry "$sub_entry" "true"
             done
         
         # Se file
-        elif [ -f $entry ]; then
+        elif [ -f "$zsh_funcs/$entry" ]; then
             echo
-            _formulate_entry $entry "false"
+            _formulate_entry "$zsh_funcs/$entry" "false"
         fi
         
     done
