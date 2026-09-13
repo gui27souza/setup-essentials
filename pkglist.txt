@@ -6,11 +6,15 @@ btop
 calc
 cmake
 dolphin
+dunst
 firefox
 flatpak-kcm
 gimp
 htop
 hyprland
+hyprlauncher
+hyprpaper
+hyprpolkitagent
 intel-ucode
 jq
 kde-gtk-config
@@ -49,6 +53,7 @@ timeshift
 tree
 union
 wacomtablet
+waybar
 wget
 xf86-video-amdgpu
 xf86-video-ati
