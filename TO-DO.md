@@ -2,5 +2,6 @@
     - clonador interativo de repositórios do perfil
     - todos os repos, repos usados no ultimo mes, etc
 
-- vscode theme dealer
-    - go simple, só actually-2077
+- Refinar pkglist
+    - Criar tipos de listas: obrigatorias, opcionais, etc
+    - Melhorar experiência do script, escolher oq baixar
