@@ -1,0 +1,19 @@
+{
+  "name": "actually-2077",
+  "displayName": "Actually 2077 Theme",
+  "description": "Dark Theme inspired by Cyberpunk 2077",
+  "publisher": "gui27souza",
+  "version": "1.0.0",
+  "license": "MIT",
+  "engines": { "vscode": "^1.50.0" },
+  "categories": ["Themes"],
+  "contributes": {
+    "themes": [
+      {
+        "label": "actually-2077",
+        "uiTheme": "vs-dark",
+        "path": "./actually-2077.json"
+      }
+    ]
+  }
+}

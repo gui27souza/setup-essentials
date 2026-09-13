@@ -105,7 +105,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Carrega automaticamente todas as funções modulares da ~/.config/zsh
 if [ -d "$HOME/.config/zsh" ]; then
-    for file in "$HOME/.config/zsh/"*.zsh; do
+    for file in "$HOME/.config/zsh"/**/*.zsh(N); do
         [ -r "$file" ] && source "$file"
     done
 fi
