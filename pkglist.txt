@@ -52,6 +52,7 @@ stow
 timeshift
 tree
 union
+vlc
 wacomtablet
 waybar
 wget
