@@ -39,7 +39,7 @@ sudo ./scripts/boot/setup-refind-boot.sh
 
 | Módulo | Descrição |
 | :--- | :--- |
-| [**`dotfiles/zsh/`**](dotfiles/zsh/.config/zsh/README.md) | Configurações do Zsh e funções modulares categorizadas (`apps`, `git`, `helpers`, `system`). |
+| [**`dotfiles/`**](dotfiles/DOTFILES.md) | Dotfiles gerenciados via GNU Stow — guia completo de como adicionar e vincular configs. |
 | [**`kde/`**](kde/README.md) | Backup das configs do KDE geradas via konsole. |
 | [**`scripts/boot/`**](scripts/boot/README.md) | Automação do rEFInd para inicialização portátil em máquinas hospedeiras. |
 | [**`vscode/`**](vscode/README.md) | Tema e customizações de interface para o VS Code. |
