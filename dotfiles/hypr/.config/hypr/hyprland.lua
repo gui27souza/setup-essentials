@@ -115,7 +115,7 @@ hl.config({
 
         -- Change transparency of focused and unfocused windows
         active_opacity   = 1.0,
-        inactive_opacity = 1.0,
+        inactive_opacity = 0.98,
 
         shadow = {
             enabled      = true,
@@ -220,9 +220,12 @@ hl.config({
 ---- INPUT ----
 ---------------
 
+-- To see full list of layout, use:
+-- nano /usr/share/X11/xkb/rules/base.lst
+
 hl.config({
     input = {
-        kb_layout  = "us",
+        kb_layout  = "br",
         kb_variant = "",
         kb_model   = "",
         kb_options = "",
@@ -230,7 +233,7 @@ hl.config({
 
         follow_mouse = 1,
 
-        sensitivity = 0, -- -1.0 - 1.0, 0 means no modification.
+        sensitivity = 0.2, -- -1.0 - 1.0, 0 means no modification.
 
         touchpad = {
             natural_scroll = false,
