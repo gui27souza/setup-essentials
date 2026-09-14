@@ -18,6 +18,7 @@ hyprpolkitagent
 intel-ucode
 jq
 kde-gtk-config
+kdenlive
 kdeplasma-addons
 kgamma
 kitty
@@ -33,7 +34,6 @@ oxygen
 oxygen-sounds
 pacman-contrib
 plasma-browser-integration
-plasma-desktop
 plasma-firewall
 plasma-login-manager
 plasma-sdk
