@@ -112,3 +112,7 @@ if [ -d "$HOME/.config/zsh" ]; then
         [ -r "$file" ] && source "$file"
     done
 fi
+
+# Permite autocomplete nas funções zsh
+autoload -U compinit
+compinit -u
