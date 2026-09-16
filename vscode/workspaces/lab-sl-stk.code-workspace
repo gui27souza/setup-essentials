@@ -8,6 +8,9 @@
 		},
 		{
 			"path": "../../../STK-dev/stk-code"
+		},
+		{
+			"path": "../../../STK-dev/stk-code/src"
 		}
 	],
 	"settings": {}
