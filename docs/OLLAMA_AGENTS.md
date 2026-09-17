@@ -115,3 +115,47 @@ Estruturar o PC Principal como um servidor de inferência de IA autônomo, dispo
   2. Configurar `OLLAMA_HOST=0.0.0.0:11434` no `ollama.service` do Arch Server.
   3. No notebook (durante viagens), apontar o VS Code (Continue/Twinny) para `http://<IP-DO-PC-NO-TAILSCALE>:11434`.
   4. Validar chamadas de autocomplete e chat remoto via rede privada criptografada.
+
+---
+
+## 📋 Checklist de Acompanhamento da Execução
+
+### 🎯 Fase 1: MVP Local & Setup do Server Interno
+
+#### 1. Preparação de Disco & Sistema Base
+- [ ] Redimensionar a partição NTFS do Windows em ~128 GB via Gerenciador de Discos
+- [ ] Executar o `archinstall` na partição liberada (Perfil Mínimo/Headless)
+- [ ] Formatar o volume de modelos em `btrfs` e criar a pasta `/mnt/ollama_models`
+- [ ] Configurar a montagem com compressão `zstd:3` no `/etc/fstab` do Arch Server
+
+#### 2. Stack de IA, GPU & Serviços
+- [ ] Instalar os pacotes `ollama-rocm`, `rocm-smi` e `radeontop` no Arch Server
+- [ ] Criar o override no `ollama.service` definindo `OLLAMA_MODELS=/mnt/ollama_models`
+- [ ] Habilitar e iniciar o serviço (`systemctl enable --now ollama`)
+- [ ] Fazer o pull do modelo de Autocomplete (`qwen2.5-coder:1.5b-base`)
+- [ ] Fazer o pull do modelo Daily Driver (`qwen2.5-coder:7b` ou `14b`)
+- [ ] Fazer o pull do modelo Heavy/Raciocínio (`deepseek-r1:14b` ou `32b`)
+- [ ] Validar consumo de VRAM da RX 9070 XT via `rocm-smi` durante inferência
+
+#### 3. Integração com Arch Workstation (SSD Externo)
+- [ ] Adicionar entrada no `/etc/fstab` do Arch Workstation com flag `nofail` e `zstd:3`
+- [ ] Testar boot do Arch Workstation sem o SSD interno conectado (garantir resiliência do `nofail`)
+- [ ] Instalar e configurar a extensão Continue (ou Twinny) no VS Code apontando para `localhost:11434`
+- [ ] Validar autocompletar em tempo real e chat lateral no VS Code local
+
+#### 4. Automação de Boot Remoto & Scripts
+- [ ] Mapear o ID UEFI do Windows via `efibootmgr` no Linux
+- [ ] Mapear o GUID do rEFInd via `bcdedit` no Windows
+- [ ] Criar o alias `boot-win` nos dotfiles do Zsh
+- [ ] Criar o script `boot-arch.ps1` no Windows para retorno em 1 clique
+- [ ] Testar alternância de SO via tomada inteligente e scripts de boot
+
+---
+
+### 🎯 Fase 2: Expansão Multi-PC & Acesso Remoto
+
+- [ ] Instalar e autenticar o `tailscale` no Arch Server, Arch Workstation e Notebook
+- [ ] Adicionar `OLLAMA_HOST=0.0.0.0:11434` no override do `ollama.service` do Arch Server
+- [ ] Liberar porta `11434` no firewall para a interface privada do Tailscale
+- [ ] Configurar o endpoint do VS Code no Notebook apontando para o IP MagicDNS do Tailscale
+- [ ] Testar inferência remota (chat + autocompletar) do Notebook consumindo a GPU do desktop
