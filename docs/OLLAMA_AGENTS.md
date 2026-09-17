@@ -46,11 +46,11 @@ Estruturar o PC Principal como um servidor de inferência de IA autônomo, dispo
 ## 🏗️ Decisões Arquiteturais
 
 ### 1. Estrutura de Armazenamento e Particionamento (SSD Interno)
-* **Redimensionamento:** Redução de **180 GB (184320 MB)** da partição NTFS do Windows no SSD interno.
+* **Redimensionamento:** Redução de **137 GB** da partição NTFS do Windows no SSD interno.
 * **Partição Linux Dedicada (`btrfs`):**
   * **Arch Server (Headless):** Instalação minimalista no SSD interno (~10 GB para SO base + ROCm + Ollama + Tailscale). Atua por padrão em modo **Headless** (`multi-user.target`), alocando 100% da VRAM da RX 9070 XT para o Ollama. Mantém a possibilidade de inicializar uma GUI leve sob demanda (ex: via `startx` ou inicialização manual do display manager).
-  * **Cofre de Modelos:** O espaço restante (~170 GB) fica alocado no diretório `/mnt/ollama_models` formatado em Btrfs com `compress=zstd:3`.
-* **Política de Modelos (Gestão dos ~170 GB):**
+  * **Cofre de Modelos:** O espaço restante fica alocado no diretório `/mnt/ollama_models` formatado em Btrfs com `compress=zstd:3`.
+* **Política de Modelos:**
   1. **Heavy Model:** 1x Modelo de alta capacidade (34B–70B quantizado) para raciocínio complexo.
   2. **Daily Driver:** 1x Modelo médio (8B–14B) rápido para uso geral.
   3. **Inline Completion:** 1x Modelo ultra-light (1B–3B) dedicado a autocompletar no VS Code.
@@ -85,7 +85,7 @@ Estruturar o PC Principal como um servidor de inferência de IA autônomo, dispo
 ### 🎯 Fase 1: MVP Local & Setup do Server Interno
 
 #### 1. Preparação do Disco e Instalação do Arch Server
-* **Redimensionamento:** Reduzir a partição NTFS do Windows pelo Gerenciador de Discos do Windows em **180 GB (184320 MB)**.
+* **Redimensionamento:** Reduzir a partição NTFS do Windows pelo Gerenciador de Discos do Windows em **137 GB**.
 * **Instalação Minimalista:**
   * Instalar o **Arch Linux Server (Headless)** na nova partição usando `archinstall` (perfil mínimo, sem desktop environment, apenas drivers de sistema).
   * Criar o ponto de montagem `/mnt/ollama_models` em Btrfs com `compress=zstd:3`.
@@ -114,7 +114,7 @@ Estruturar o PC Principal como um servidor de inferência de IA autônomo, dispo
 ### 🎯 Fase 1: MVP Local & Setup do Server Interno
 
 #### 1. Preparação de Disco & Sistema Base
-- [ ] Redimensionar a partição NTFS do Windows em **180 GB (184320 MB)** via Gerenciador de Discos
+- [X] Redimensionar a partição NTFS do Windows em **137 GB** via Gerenciador de Discos
 - [ ] Executar o `archinstall` na partição liberada (Perfil Mínimo/Headless)
 - [ ] Formatar o volume de modelos em `btrfs` e criar a pasta `/mnt/ollama_models`
 - [ ] Configurar a montagem com compressão `zstd:3` no `/etc/fstab` do Arch Server
