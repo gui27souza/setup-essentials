@@ -5,6 +5,7 @@ breeze-plymouth
 btop
 calc
 cmake
+cmatrix
 dolphin
 dunst
 firefox
