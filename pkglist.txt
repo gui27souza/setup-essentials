@@ -11,6 +11,7 @@ dunst
 firefox
 flatpak-kcm
 gimp
+gparted
 htop
 hyprland
 hyprlauncher
