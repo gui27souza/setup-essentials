@@ -8,10 +8,9 @@
 		},
 		{
 			"path": "../../../STK-dev/stk-code"
-		},
-		{
-			"path": "../../../STK-dev/stk-code/src"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"C_Cpp.default.compileCommands": "${workspaceFolder:stk-code}/cmake_build/compile_commands.json"
+	}
 }
