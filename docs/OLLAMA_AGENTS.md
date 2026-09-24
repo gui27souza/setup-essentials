@@ -34,7 +34,6 @@ Caso o usuário peça para criar, editar, depurar ou tratar especificamente sobr
 ⚠️ **Ação Obrigatória:** Solicite explicitamente que o usuário forneça o contexto atualizado (como o `README.md`, scripts ou trechos do repositório) antes de propor qualquer alteração ou comando no código do repositório. Não assuma nem invente a estrutura de arquivos interna do repositório.
 
 ---
----
 
 # 🤖 Project Checkpoint: Local LLM Inference Architecture (Ollama + Tailscale)
 
@@ -60,6 +59,7 @@ Estruturar o PC Principal como um servidor de inferência de IA autônomo, dispo
 * **Cenário Remoto / Viagens (PC Principal em Casa):**
   * O PC liga via tomada inteligente -> `rEFInd` entra no **Arch Server (Interno)**.
   * O sistema sobe sem interface gráfica em segundos, aciona o `ollama.service` com aceleração ROCm na RX 9070 XT e expõe a API de IA no Tailscale.
+  * Se necessário, acessar o arch interno via ssh pelo arch externo plugado no notebook
 * **Cenário Local (SSD Externo Plugado no PC Principal):**
   * O PC liga -> `rEFInd` entra no **Arch Workstation (SSD Externo)**.
   * O Arch Workstation monta automaticamente a partição interna em `/mnt/ollama_models` (com a flag `nofail` no `/etc/fstab`).
@@ -77,6 +77,29 @@ Estruturar o PC Principal como um servidor de inferência de IA autônomo, dispo
   * **Padrão:** Tomada liga -> Entra no Arch Linux automaticamente.
   * **Arch -> Windows:** Via SSH (`efibootmgr -n <ID_WINDOWS> && reboot`). O PC reinicia **uma única vez** no Windows. Na próxima inicialização, retorna ao padrão Linux.
   * **Windows -> Arch:** Via Sunshine/Moonlight/PowerShell (`bcdedit /set {fwbootmgr} bootsequence {GUID_REFIND} && shutdown /r /t 0`).
+
+---
+
+## SOs e Acessos
+
+- Arch SSD Externo - acesso apenas plugando na máquina a usar
+  - PC
+  - Notebook
+
+- Notebook
+  - Windows nativo - acesso apenas direto na máquina
+
+- PC Principal
+  - Windows nativo
+    - acesso direto na máquina
+    - via moonlight/sunshine (já configurado) pelo Notebook em qualquer SO
+      - Windows Nativo do Notebook 
+      - Arch externo plugado no Notebook
+  - Arch Interno
+    - acesso direto na máquina
+    - acesso via Arch Externo
+      - via montagem se arch externo plugado no pc principal
+      - via ssh se arch externo plugado no notebook
 
 ---
 
@@ -115,8 +138,8 @@ Estruturar o PC Principal como um servidor de inferência de IA autônomo, dispo
 
 #### 1. Preparação de Disco & Sistema Base
 - [X] Redimensionar a partição NTFS do Windows em **137 GB** via Gerenciador de Discos
-- [ ] Executar o `archinstall` na partição liberada (Perfil Mínimo/Headless)
-- [ ] Formatar o volume de modelos em `btrfs` e criar a pasta `/mnt/ollama_models`
+- [X] Executar o `archinstall` na partição liberada (Perfil Mínimo/Headless)
+- [X] Formatar o volume de modelos em `btrfs` e criar a pasta `/mnt/ollama_models`
 - [ ] Configurar a montagem com compressão `zstd:3` no `/etc/fstab` do Arch Server
 
 #### 2. Stack de IA, GPU & Serviços
@@ -145,7 +168,8 @@ Estruturar o PC Principal como um servidor de inferência de IA autônomo, dispo
 
 ### 🎯 Fase 2: Expansão Multi-PC & Acesso Remoto
 
-- [ ] Instalar e autenticar o `tailscale` no Arch Server, Arch Workstation e Notebook
+- [X] Instalar e autenticar o `tailscale` no Arch Server, Arch Workstation e Notebook
+- [X] Configuração de ssh no arch interno para o acesso via arch do ssd externo plugado no notebook
 - [ ] Adicionar `OLLAMA_HOST=0.0.0.0:11434` no override do `ollama.service` do Arch Server
 - [ ] Liberar porta `11434` no firewall para a interface privada do Tailscale
 - [ ] Configurar o endpoint do VS Code no Notebook apontando para o IP MagicDNS do Tailscale
