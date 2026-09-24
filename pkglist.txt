@@ -51,6 +51,7 @@ sof-firmware
 spectacle
 spotify-launcher
 stow
+tailscale
 timeshift
 tree
 union
