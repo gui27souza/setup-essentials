@@ -1,13 +1,24 @@
 {
 	"folders": [
 		{
+			"name": "lab-sl",
 			"path": "../../../Faculdade/8-semestre/lab-sl"
 		},
 		{
+			"name": "workstation",
+			"path": "../../../Faculdade/8-semestre/lab-sl/workstation"
+		},
+		{
+			"name": "stk-assets",
 			"path": "../../../STK-dev/stk-assets"
 		},
 		{
+			"name": "stk-code",
 			"path": "../../../STK-dev/stk-code"
+		},
+		{
+			"name": "src",
+			"path": "../../../STK-dev/stk-code/src"
 		}
 	],
 	"settings": {
