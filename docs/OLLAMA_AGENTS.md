@@ -140,16 +140,16 @@ Estruturar o PC Principal como um servidor de inferência de IA autônomo, dispo
 - [X] Redimensionar a partição NTFS do Windows em **137 GB** via Gerenciador de Discos
 - [X] Executar o `archinstall` na partição liberada (Perfil Mínimo/Headless)
 - [X] Formatar o volume de modelos em `btrfs` e criar a pasta `/mnt/ollama_models`
-- [ ] Configurar a montagem com compressão `zstd:3` no `/etc/fstab` do Arch Server
+- [X] Configurar a montagem com compressão `zstd:3` no `/etc/fstab` do Arch Server (via subvolume @ollama)
 
 #### 2. Stack de IA, GPU & Serviços
-- [ ] Instalar os pacotes `ollama-rocm`, `rocm-smi` e `radeontop` no Arch Server
-- [ ] Criar o override no `ollama.service` definindo `OLLAMA_MODELS=/mnt/ollama_models`
-- [ ] Habilitar e iniciar o serviço (`systemctl enable --now ollama`)
-- [ ] Fazer o pull do modelo de Autocomplete (`qwen2.5-coder:1.5b-base`)
+- [X] Instalar os pacotes `ollama-rocm`, `rocm-smi` e `radeontop` no Arch Server
+- [X] Criar o override no `ollama.service` definindo `OLLAMA_MODELS=/mnt/ollama_models`
+- [X] Habilitar e iniciar o serviço (`systemctl enable --now ollama`)
+- [X] Fazer o pull do modelo de Autocomplete (`qwen2.5-coder:1.5b-base`)
 - [ ] Fazer o pull do modelo Daily Driver (`qwen2.5-coder:7b` ou `14b`)
 - [ ] Fazer o pull do modelo Heavy/Raciocínio (`deepseek-r1:14b` ou `32b`)
-- [ ] Validar consumo de VRAM da RX 9070 XT via `rocm-smi` durante inferência
+- [X] Validar consumo de VRAM da RX 9070 XT via `rocm-smi` durante inferência
 
 #### 3. Integração com Arch Workstation (SSD Externo)
 - [ ] Adicionar entrada no `/etc/fstab` do Arch Workstation com flag `nofail` e `zstd:3`
@@ -170,7 +170,31 @@ Estruturar o PC Principal como um servidor de inferência de IA autônomo, dispo
 
 - [X] Instalar e autenticar o `tailscale` no Arch Server, Arch Workstation e Notebook
 - [X] Configuração de ssh no arch interno para o acesso via arch do ssd externo plugado no notebook
-- [ ] Adicionar `OLLAMA_HOST=0.0.0.0:11434` no override do `ollama.service` do Arch Server
+- [X] Adicionar `OLLAMA_HOST=0.0.0.0:11434` no override do `ollama.service` do Arch Server
 - [ ] Liberar porta `11434` no firewall para a interface privada do Tailscale
 - [ ] Configurar o endpoint do VS Code no Notebook apontando para o IP MagicDNS do Tailscale
 - [ ] Testar inferência remota (chat + autocompletar) do Notebook consumindo a GPU do desktop
+
+---
+
+## 🎨 Diretrizes de Workflow & Gestão de Contexto (Ergonomia de IA)
+
+Para maximizar a precisão das respostas e evitar degradação de contexto ou desperdício de VRAM na RX 9070 XT, a interação com o ecossistema de LLMs locais deve seguir as seguintes diretrizes:
+
+### 1. Especialização por Modelo (Model Routing)
+* **Inline Completion (VS Code):** `qwen2.5-coder:1.5b`
+  * Uso exclusivo para autocompletar código em tempo real via FIM (*Fill-In-the-Middle*).
+* **Daily Driver (Desenvolvimento & Refatoração):** `qwen2.5-coder:7b` / `14b`
+  * Uso para criação de funções, refatoração de módulos, geração de testes unitários e code review.
+* **Reasoning & Architecture (Arquiteto de Sistemas):** `deepseek-r1:14b` / `qwen2.5:14b`
+  * Uso focado em planejamento arquitetural, debugging complexo, análise de concorrência/redes e raciocínio lógico profundo.
+
+### 2. Gestão de Contexto (Context-Window Hygiene)
+* **File-Driven Context:** Evitar o envio de repositórios inteiros ao chat. O contexto deve ser escopado usando apenas os arquivos (`@file`) e snippets estritamente necessários para a tarefa.
+* **System Prompts Declarativos:** Utilizar arquivos Markdown de especificação (como este `OLLAMA_AGENTS.md`) injetados na primeira mensagem para estabelecer o contexto da infraestrutura sem necessidade de reexplicação.
+* **Descarregamento Automático:** O serviço do Ollama gerencia a VRAM liberando o modelo da memória após 5 minutos de inatividade, garantindo recursos livres para o sistema/jogos.
+
+### 3. Interfaces & Clientes
+* **VS Code (Continue.dev / Twinny):** Interface primária para desenvolvimento de código, conectada ao endpoint do Ollama local (`localhost:11434`) ou remoto via IP do Tailscale.
+* **Web UI / Frontend (Open WebUI):** Interface recomendada para conversas de estudo, arquitetura e históricos categorizados em pastas temáticas, acessível de qualquer dispositivo da rede mesh.
+* **CLI (`ollama run` / `ollama ps`):** Reservado para testes rápidos de modelos, gerenciamento de downloads e inspeção de estado da VRAM.
