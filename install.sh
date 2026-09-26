@@ -16,8 +16,7 @@ install_packages() {
 apply_dotfiles() {
     echo "==> Aplicando Dotfiles via GNU Stow..."
     sudo pacman -S --needed stow
-    
-    # Executa a partir da pasta dotfiles se ela existir no dir atual
+
     if [ -d "dotfiles" ]; then
         cd dotfiles
     fi
@@ -26,11 +25,26 @@ apply_dotfiles() {
         [ -d "$app" ] || continue
         app_name="${app%/}"
         echo "   -> Linkando $app_name..."
-        stow -D -t ~ "$app_name" 2>/dev/null || true
+
+        # Adota o arquivo existente na home sem falhar o script
+        stow --adopt -t ~ "$app_name" 2>/dev/null || true
         stow -R -t ~ "$app_name"
     done
     
     cd - > /dev/null
+
+    # Verifica se o --adopt alterou arquivos no repositório
+    if ! git diff --quiet; then
+        echo ""
+        echo "⚠️  [ATENÇÃO] O Stow 'adotou' arquivos pré-existentes na sua home."
+        echo "   Arquivos modificados no repositório local:"
+        git status --short
+        echo ""
+        echo "💡 Dica: Rode 'git diff' para revisar as diferenças."
+        echo "   - Para manter sua versão do repo: 'git checkout .'"
+        echo "   - Para aceitar a versão desta máquina: commite as alterações."
+        echo ""
+    fi
 }
 
 echo "=== Arch Infrastructure Setup ==="
