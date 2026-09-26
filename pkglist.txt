@@ -29,6 +29,7 @@ kwallet-pam
 kwrited
 lazygit
 linux-lts
+mousepad
 nano
 network-manager-applet
 openal
