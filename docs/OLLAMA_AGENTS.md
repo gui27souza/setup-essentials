@@ -161,10 +161,10 @@ Estruturar o PC Principal como um servidor de inferência de IA autônomo, dispo
 - [X] Limpeza e consolidação do rEFInd na partição EFI principal
 - [X] Configuração declarativa e limpa do menu (default_selection "vmlinuz,Arch", scanfor internal,external e ocultação de duplicadas)
 - [X] Setar a escolha padrão do Arch Interno com timeout
-- [ ] Mapear o ID UEFI do Windows via `efibootmgr` no Linux
-- [ ] Criar o alias `boot-win` nos dotfiles do Zsh
+- [X] Mapear o ID UEFI do Windows via `efibootmgr` no Linux
+- [X] Criar o alias `boot-win` nos dotfiles do Zsh
 - [X] Testar SO padrão (arch interno) via tomada inteligente apenas
-- [ ] Testar alternância de SO via tomada inteligente e scripts de boot
+- [X] Testar alternância de SO via tomada inteligente e scripts de boot
 
 ---
 
