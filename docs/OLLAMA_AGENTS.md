@@ -147,8 +147,8 @@ Estruturar o PC Principal como um servidor de inferência de IA autônomo, dispo
 - [X] Criar o override no `ollama.service` definindo `OLLAMA_MODELS=/mnt/ollama_models`
 - [X] Habilitar e iniciar o serviço (`systemctl enable --now ollama`)
 - [X] Fazer o pull do modelo de Autocomplete (`qwen2.5-coder:1.5b-base`)
-- [ ] Fazer o pull do modelo Daily Driver (`qwen2.5-coder:7b` ou `14b`)
-- [ ] Fazer o pull do modelo Heavy/Raciocínio (`deepseek-r1:14b` ou `32b`)
+- [X] Fazer o pull do modelo Daily Driver (`qwen2.5-coder:7b` ou `14b`)
+- [X] Fazer o pull do modelo Heavy/Raciocínio (`deepseek-r1:14b` ou `32b`)
 - [X] Validar consumo de VRAM da RX 9070 XT via `rocm-smi` durante inferência
 
 #### 3. Integração com Arch Workstation (SSD Externo)
