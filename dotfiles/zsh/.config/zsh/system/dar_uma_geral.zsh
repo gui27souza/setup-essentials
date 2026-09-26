@@ -39,19 +39,22 @@ dar_uma_geral() {
         echo "Nenhum pacote órfão encontrado."
     fi
 
-    echo -e "\n--> 🗑️ Limpando cache de pacotes (mantendo 1 versão antiga para rollback)..."
-    # Recomenda-se pacman-contrib para usar o paccache nativo e seguro
+    echo -e "\n--> 🗑️ Limpando cache de pacotes..."
+
+    # Remove primeiro arquivos temporários de download interrompido/parcial
+    sudo rm -rf /var/cache/pacman/pkg/download-*(N)
+
+    # Mantém a versão atual + 1 versão antiga no cache
     if command -v paccache &> /dev/null; then
-        sudo paccache -r -k 1  # Mantém a versão atual + 1 versão antiga no cache
+        sudo paccache -r -k 1
     else
-        sudo pacman -Sc        # Fallback caso paccache não esteja instalado
+        sudo pacman -Sc --noconfirm
     fi
 
+    # Limpa cache do AUR/yay
     if command -v yay &> /dev/null; then
-        yay -Sc
+        yay -Sc --noconfirm
     fi
-
-    sudo rm -f /var/cache/pacman/pkg/download-* 2>/dev/null
 
     echo -e "\n--------------------------------------------------"
     check_dotfiles_status
