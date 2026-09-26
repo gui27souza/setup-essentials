@@ -158,10 +158,12 @@ Estruturar o PC Principal como um servidor de inferência de IA autônomo, dispo
 - [ ] Validar autocompletar em tempo real e chat lateral no VS Code local
 
 #### 4. Automação de Boot Remoto & Scripts
+- [X] Limpeza e consolidação do rEFInd na partição EFI principal
+- [X] Configuração declarativa e limpa do menu (default_selection "vmlinuz,Arch", scanfor internal,external e ocultação de duplicadas)
+- [X] Setar a escolha padrão do Arch Interno com timeout
 - [ ] Mapear o ID UEFI do Windows via `efibootmgr` no Linux
-- [ ] Mapear o GUID do rEFInd via `bcdedit` no Windows
 - [ ] Criar o alias `boot-win` nos dotfiles do Zsh
-- [ ] Criar o script `boot-arch.ps1` no Windows para retorno em 1 clique
+- [X] Testar SO padrão (arch interno) via tomada inteligente apenas
 - [ ] Testar alternância de SO via tomada inteligente e scripts de boot
 
 ---
