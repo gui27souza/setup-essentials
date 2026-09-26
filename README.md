@@ -30,7 +30,7 @@ chmod +x install.sh
 #### 2. Configurar Bootloader na Máquina Hospedeira (Opcional / Por PC)
 Para habilitar o boot limpo via rEFInd na partição interna de um novo computador sem perder a ordem da BIOS:
 ```bash
-sudo ./scripts/boot/setup-refind-boot.sh
+sudo ./refind/setup-refind-boot.sh
 ```
 
 ---
@@ -41,7 +41,7 @@ sudo ./scripts/boot/setup-refind-boot.sh
 | :--- | :--- |
 | [**`dotfiles/`**](dotfiles/DOTFILES.md) | Dotfiles gerenciados via GNU Stow — guia completo de como adicionar e vincular configs. |
 | [**`kde/`**](kde/README.md) | Backup das configs do KDE geradas via konsole. |
-| [**`scripts/boot/`**](scripts/boot/README.md) | Automação do rEFInd para inicialização portátil em máquinas hospedeiras. |
+| [**`refind/`**](refind/README.md) | Automação e repositório de perfis de boot rEFInd para máquinas hospedeiras. |
 | [**`vscode/`**](vscode/README.md) | Tema e customizações de interface para o VS Code. |
 | [**`manual_instalations.md`**](manual_instalations.md) | Registro de ferramentas instaladas fora dos gerenciadores de pacote. |
 | [**`TO-DO.md`**](TO-DO.md) | Backlog de ideias e melhorias para o ambiente. |
@@ -53,3 +53,7 @@ sudo ./scripts/boot/setup-refind-boot.sh
 ```bash
 sudo pacman -S --needed pacman-contrib yay flatpak git stow
 ```
+
+### Envs Úteis
+
+- `SETUP_ESSENTIALS_DIR` - Caminho do repo, ativado no .zshrc, descobre a raiz do repositório setup-essentials via symlink do Stow
