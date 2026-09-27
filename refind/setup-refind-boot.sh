@@ -79,17 +79,34 @@ if [ -f "$REFIND_CONF" ]; then
         echo "scanfor internal,external" >> "$REFIND_CONF"
     fi
 
-    # Oculta o rEFInd do SSD externo (/EFI/refind) para evitar duplicação (ícone da lupa)
+    # Remove dont_scan_dirs e dont_scan_files se existirem
+    sed -i '/dont_scan_dirs/d' "$REFIND_CONF"
+    sed -i '/dont_scan_files/d' "$REFIND_CONF"
+
+    # Adiciona configurações default que funcionam
+    cat <<EOF >> "$REFIND_CONF"
+use_nvram false
+extra_kernel_version_strings "linux-hardened,linux-rt-lts,linux-zen,linux-lts,linux-rt,linux"
+EOF
+
     if grep -q "^dont_scan_dirs" "$REFIND_CONF"; then
-        sed -i 's|^dont_scan_dirs .*|dont_scan_dirs /EFI/boot, /EFI/systemd, /EFI/arch, /EFI/refind|' "$REFIND_CONF"
+        echo "    [*] dont_scan_dirs ainda presente no $REFIND_CONF."
     else
-        echo 'dont_scan_dirs /EFI/boot, /EFI/systemd, /EFI/arch, /EFI/refind' >> "$REFIND_CONF"
+        echo "    [*] dont_scan_dirs removido com sucesso."
     fi
 
     if grep -q "^dont_scan_files" "$REFIND_CONF"; then
-        sed -i 's|^dont_scan_files .*|dont_scan_files bootx64.efi, systemd-bootx64.efi, initramfs-linux-fallback.img|' "$REFIND_CONF"
+        echo "    [*] dont_scan_files ainda presente no $REFIND_CONF."
     else
-        echo 'dont_scan_files bootx64.efi, systemd-bootx64.efi, initramfs-linux-fallback.img' >> "$REFIND_CONF"
+        echo "    [*] dont_scan_files removido com sucesso."
+    fi
+
+    if grep -q "^use_nvram false" "$REFIND_CONF"; then
+        echo "    [*] use_nvram false adicionado com sucesso."
+    fi
+
+    if grep -q "^extra_kernel_version_strings" "$REFIND_CONF"; then
+        echo "    [*] extra_kernel_version_strings adicionado com sucesso."
     fi
 
     # Salva a versão no repositório
@@ -121,6 +138,6 @@ echo "==========================================================================
 echo " [OK] rEFInd instalado e configurado com sucesso na EFI interna!"
 echo "=========================================================================="
 echo " - Timeout configurado para: ${TIMEOUT}s."
-echo " - Ocultado /EFI/refind externo para evitar o rEFInd duplicado (lupa)."
-echo " - Entradas antigas do systemd-boot ignoradas."
+echo " - don_scan_dirs e dont_scan_files removidos."
+echo " - use_nvram false e extra_kernel_version_strings adicionados."
 echo "=========================================================================="
