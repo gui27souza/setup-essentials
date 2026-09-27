@@ -152,10 +152,14 @@ Estruturar o PC Principal como um servidor de inferência de IA autônomo, dispo
 - [X] Validar consumo de VRAM da RX 9070 XT via `rocm-smi` durante inferência
 
 #### 3. Integração com Arch Workstation (SSD Externo)
-- [ ] Adicionar entrada no `/etc/fstab` do Arch Workstation com flag `nofail` e `zstd:3`
-- [ ] Testar boot do Arch Workstation sem o SSD interno conectado (garantir resiliência do `nofail`)
-- [ ] Instalar e configurar a extensão Continue (ou Twinny) no VS Code apontando para `localhost:11434`
-- [ ] Validar autocompletar em tempo real e chat lateral no VS Code local
+- [X] Adicionar entrada no `/etc/fstab` do Arch Workstation com flag `nofail` e `zstd:3`
+- [X] Montar e validar a visibilidade dos modelos Btrfs no Arch Workstation
+- [X] Testar boot do Arch Workstation sem o SSD interno conectado (garantir resiliência do `nofail`)
+- [X] Criar override no systemd apontando `OLLAMA_MODELS=/mnt/ollama_models`
+- [X] Criar override no systemd apontando OLLAMA_MODELS=/mnt/ollama_models
+- [X] Instalar e configurar a extensão Continue (ou Twinny) no VS Code apontando para `localhost:11434`
+- [X] Validar autocompletar em tempo real e chat lateral no VS Code local
+  - Nota sobre autocomplete: No momento está funcional, mas o uso ainda não me agrada, idealmente, gostaria de sugestões apenas com um trigger quando eu quisesse, e não em todos os lugares.
 
 #### 4. Automação de Boot Remoto & Scripts
 - [X] Limpeza e consolidação do rEFInd na partição EFI principal

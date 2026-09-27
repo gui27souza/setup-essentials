@@ -32,6 +32,7 @@ linux-lts
 mousepad
 nano
 network-manager-applet
+ollama-rocm
 openal
 oxygen
 oxygen-sounds
@@ -46,6 +47,7 @@ plasma-vault
 plasma-welcome
 plymouth-kcm
 print-manager
+radeontop
 refind
 sddm-kcm
 sof-firmware
