@@ -33,7 +33,6 @@ mousepad
 nano
 network-manager-applet
 ollama-rocm
-openal
 oxygen
 oxygen-sounds
 pacman-contrib
@@ -47,6 +46,7 @@ plasma-vault
 plasma-welcome
 plymouth-kcm
 print-manager
+prismlauncher
 radeontop
 refind
 sddm-kcm
