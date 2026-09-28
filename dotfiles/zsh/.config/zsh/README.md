@@ -7,11 +7,14 @@ Esta pasta concentra todas as automações, atalhos e rotinas do terminal dividi
 ### 📂 Estrutura de Diretórios
 
 * **`apps/`**: Atalhos e inicializadores de aplicações de terminal.
+* **`arch_internal/`**: Comandos referentes ao arch server no ssd interno do PC Principal.
+* **`display/`**: Comandos de gerenciamento de monitores e displays.
 * **`git/`**: Scripts relacionados a git e repositórios.
     * **`setup_essentials_sync/`**: Scripts de sincronização e validação dos dotfiles com o repositório remoto.
         * **`kde/`**: Correlatos à configuração do KDE Plasma com konsave.
 * **`helpers/`**: Comandos de auxílio, help interativo e utilitários rápidos.
 * **`system/`**: Rotinas essenciais de manutenção do Arch Linux e gestão de pacotes.
+* **`vscode/`**: Comandos relacionados a IDE vscode.
 
 ---
 
