@@ -9,6 +9,19 @@
 			"path": "../../../Faculdade/8-semestre"
 		},
 		{
+			"name": "mqam",
+			"path": "../../../Faculdade/8-semestre/mqam"
+		},
+		{
+			"name": "gpti",
+			"path": "../../../Faculdade/8-semestre/gpti"
+		},
+		{
+			"name": "esi-1",
+			"path": "../../../Faculdade/8-semestre/esi-1"
+		},
+		{
+			"name": "ia",
 			"path": "../../../Faculdade/8-semestre/ia"
 		}
 	],
