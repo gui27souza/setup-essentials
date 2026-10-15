@@ -17,12 +17,12 @@
 			"path": "../../../Faculdade/8-semestre/gpti"
 		},
 		{
-			"name": "esi-1",
-			"path": "../../../Faculdade/8-semestre/esi-1"
-		},
-		{
 			"name": "ia",
 			"path": "../../../Faculdade/8-semestre/ia"
+		},
+		{
+			"name": "esi-1",
+			"path": "../../../Faculdade/8-semestre/esi-1"
 		}
 	],
 	"settings": {}

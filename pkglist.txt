@@ -1,3 +1,4 @@
+ark
 aspell-pt
 base
 bluez-utils
@@ -47,6 +48,7 @@ plasma-welcome
 plymouth-kcm
 print-manager
 prismlauncher
+qalculate-qt
 radeontop
 refind
 sddm-kcm
