@@ -37,6 +37,7 @@ ollama-rocm
 oxygen
 oxygen-sounds
 pacman-contrib
+pdfarranger
 plasma-browser-integration
 plasma-firewall
 plasma-login-manager
