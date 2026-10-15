@@ -13,16 +13,16 @@
 			"path": "../../../Faculdade/8-semestre/mqam"
 		},
 		{
-			"name": "gpti",
-			"path": "../../../Faculdade/8-semestre/gpti"
-		},
-		{
 			"name": "ia",
 			"path": "../../../Faculdade/8-semestre/ia"
 		},
 		{
 			"name": "esi-1",
 			"path": "../../../Faculdade/8-semestre/esi-1"
+		},
+		{
+			"name": "gpti",
+			"path": "../../../Faculdade/8-semestre/gpti"
 		}
 	],
 	"settings": {}
