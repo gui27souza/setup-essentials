@@ -23,7 +23,6 @@ jq
 kde-gtk-config
 kdenlive
 kdeplasma-addons
-kgamma
 kitty
 krdp
 kwallet-pam
@@ -60,9 +59,7 @@ stow
 tailscale
 timeshift
 tree
-union
 vlc
-wacomtablet
 waybar
 wget
 xf86-video-amdgpu

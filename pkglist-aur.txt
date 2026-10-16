@@ -1,7 +1,10 @@
 antigravity-cli
 google-chrome
 hunspell-pt-br
+kgamma
 konsave
+kwin-x11
 visual-studio-code-bin
+wacomtablet
 yay
 yay-debug

@@ -1,2 +1,5 @@
 hollywood
+kgamma
+kwin-x11
 openal
+wacomtablet
