@@ -6,6 +6,8 @@ check_dotfiles_status() {
         if [ -n "$(git -C "$DOTFILES_DIR" status --porcelain 2>/dev/null)" ]; then
             echo -e "\033[0;33m⚠️  [Dotfiles] Há alterações pendentes no repositório!\033[0m"
             echo -e "\033[0;36m👉 Rode 'sync_dotfiles' para atualizar o repositório remoto.\033[0m"
+            echo -e "\n\033[0;36mMudanças não commitadas:\033[0m\n"
+            git_quick_status
         else
             echo -e "\033[0;32m✅ [Dotfiles] Repositório sincronizado e atualizado.\033[0m"
         fi
