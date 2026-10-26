@@ -8,8 +8,8 @@ display_mode() {
     local MON_SEC="DP-2"
 
     # Perfis de resolução e taxa de atualização
-    local RES_MAIN="2560x1440@180Hz"
-    local RES_SEC="1920x1080@165Hz"
+    local RES_MAIN="2560x1440@180"
+    local RES_SEC="1920x1080@165"
 
     if [[ -z "$MODE" ]]; then
         echo "Uso: display_mode [primary|secondary|dual]"
@@ -19,33 +19,33 @@ display_mode() {
     if [[ "$XDG_CURRENT_DESKTOP" == "Hyprland" ]]; then
         case "$MODE" in
             primary)
-                hyprctl keyword monitor "$MON_MAIN, $RES_MAIN, 0x0, 1.25" > /dev/null
+                hyprctl keyword monitor "$MON_MAIN, ${RES_MAIN}Hz, 0x0, 1.25" > /dev/null
                 hyprctl keyword monitor "$MON_SEC, disable" > /dev/null
                 ;;
             secondary)
                 hyprctl keyword monitor "$MON_MAIN, disable" > /dev/null
-                hyprctl keyword monitor "$MON_SEC, $RES_SEC, 0x0, 1" > /dev/null
+                hyprctl keyword monitor "$MON_SEC, ${RES_SEC}Hz, 0x0, 1" > /dev/null
                 ;;
             dual)
-                hyprctl keyword monitor "$MON_SEC, $RES_SEC, 0x362, 1" > /dev/null
-                hyprctl keyword monitor "$MON_MAIN, $RES_MAIN, 1920x0, 1.25" > /dev/null
+                hyprctl keyword monitor "$MON_SEC, ${RES_SEC}Hz, 0x362, 1" > /dev/null
+                hyprctl keyword monitor "$MON_MAIN, ${RES_MAIN}Hz, 1920x0, 1.25" > /dev/null
                 ;;
             *)
                 echo "Modo inválido: $MODE. Use primary, secondary ou dual."
                 return 1
                 ;;
         esac
-    elif [[ "$XDG_CURRENT_DESKTOP" == "KDE" ]]; then
+    elif [[ "$XDG_CURRENT_DESKTOP" == "KDE" || "$XDG_CURRENT_DESKTOP" == "KDE Plasma" ]]; then
         case "$MODE" in
             primary)
-                kscreen-doctor output.$MON_MAIN.enable output.$MON_MAIN.mode.6 output.$MON_SEC.disable > /dev/null
+                kscreen-doctor output.$MON_MAIN.enable output.$MON_MAIN.mode.$RES_MAIN output.$MON_SEC.disable > /dev/null
                 ;;
             secondary)
-                kscreen-doctor output.$MON_MAIN.disable output.$MON_SEC.enable output.$MON_SEC.mode.54 > /dev/null
+                kscreen-doctor output.$MON_MAIN.disable output.$MON_SEC.enable output.$MON_SEC.mode.$RES_SEC > /dev/null
                 ;;
             dual)
-                kscreen-doctor output.$MON_SEC.enable output.$MON_SEC.mode.54 output.$MON_SEC.scale.1 output.$MON_SEC.position.0,362 \
-                               output.$MON_MAIN.enable output.$MON_MAIN.mode.6 output.$MON_MAIN.scale.1.25 output.$MON_MAIN.position.1920,0 > /dev/null
+                kscreen-doctor output.$MON_SEC.enable output.$MON_SEC.mode.$RES_SEC output.$MON_SEC.scale.1 output.$MON_SEC.position.0,362 \
+                               output.$MON_MAIN.enable output.$MON_MAIN.mode.$RES_MAIN output.$MON_MAIN.scale.1.25 output.$MON_MAIN.position.1920,0 > /dev/null
                 ;;
             *)
                 echo "Modo inválido: $MODE. Use primary, secondary ou dual."

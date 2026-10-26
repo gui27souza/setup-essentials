@@ -8,6 +8,7 @@ calc
 cmake
 cmatrix
 dolphin
+doxygen
 dunst
 firefox
 flatpak-kcm
