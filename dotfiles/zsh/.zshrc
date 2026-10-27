@@ -106,9 +106,15 @@ source $ZSH/oh-my-zsh.sh
 # Descobre a raiz do repositório setup-essentials via symlink do Stow
 export SETUP_ESSENTIALS_DIR="$(readlink -f "$HOME/.config/zsh/../../../..")"
 
+# Carrega PRIMEIRO o ensure_command para disponibilizar a função
+if [ -r "$HOME/.config/zsh/utils/commands/ensure_command.zsh" ]; then
+    source "$HOME/.config/zsh/utils/commands/ensure_command.zsh"
+fi
+
 # Carrega automaticamente todas as funções modulares da ~/.config/zsh
 if [ -d "$HOME/.config/zsh" ]; then
     for file in "$HOME/.config/zsh"/**/*.zsh(N); do
+        [[ "$file" == *"/ensure_command.zsh" ]] && continue
         [ -r "$file" ] && source "$file"
     done
 fi
