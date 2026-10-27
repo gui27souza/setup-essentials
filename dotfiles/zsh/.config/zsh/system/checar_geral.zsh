@@ -1,9 +1,14 @@
-# ZSH_DESC - Mostra updates pendentes e sincroniza lista de pacotes no repositório
+# ZSH_DESC - Mostra updates pendentes, sincroniza pacotes e roda testes de integridade do sistema
 
-# Mostra no terminal quantos updates estão esperando (sem baixar nem atualizar)
-# e sincroniza a lista de pacotes instalados no repositório.
+# Mostra no terminal quantos updates estão esperando (sem baixar nem atualizar),
+# sincroniza a lista de pacotes instalados e valida as configs/módulos do repositório.
 
 checar_geral() {
+    ensure_command "ensure_command"
+    ensure_command "quality_gate"
+    ensure_command "sync_pkglist"
+    ensure_command "check_kde_status"
+    ensure_command "check_dotfiles_status"
 
     echo -e ""
 
@@ -33,6 +38,12 @@ checar_geral() {
         sync_pkglist
     fi
 
+    # Validações de integridade do repositório (Quality Gate)
+    if command -v quality_gate &> /dev/null; then
+        echo -e "\n--------------------------------------------------"
+        quality_gate
+    fi
+
     echo -e "\n--------------------------------------------------"
     check_kde_status
     echo "--------------------------------------------------"
@@ -40,5 +51,6 @@ checar_geral() {
     echo -e "\n--------------------------------------------------"
     check_dotfiles_status
     echo "--------------------------------------------------"
-    echo "\n✨ Checagem geral concluída com sucesso!"
+
+    echo -e "\n✨ Checagem geral concluída com sucesso!"
 }

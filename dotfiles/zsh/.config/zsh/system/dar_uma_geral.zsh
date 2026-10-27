@@ -1,14 +1,23 @@
-# ZSH_DESC - Realiza atualização geral de pacotes de forma segura
+# ZSH_DESC - Realiza atualização geral de pacotes de forma segura com snapshot de emergência
 
 dar_uma_geral() {
+    ensure_command "ensure_command"
+    ensure_command "check_dotfiles_status"
+
     echo "==> 🧹 Iniciando a geral no sistema..."
 
-    # 1. Checa se o kernel LTS está instalado como segurança
+    # 1. Guardrail de Snapshot: Btrfs / Snapper antes de mexer no sistema
+    if command -v snapper &>/dev/null; then
+        echo -e "\n📸 Criando snapshot Btrfs de segurança pré-upgrade..."
+        sudo snapper create --description "Pre-upgrade backup (dar_uma_geral)" --type pre 2>/dev/null || true
+    fi
+
+    # 2. Checa se o kernel LTS está instalado como segurança
     if ! pacman -Qs linux-lts &>/dev/null; then
         echo -e "⚠️  [Dica] Kernel LTS não encontrado. Recomendado instalar para emergências: 'sudo pacman -S linux-lts linux-lts-headers'"
     fi
 
-    # 2. Verifica se há arquivos .pacnew/.pacsave pendentes
+    # 3. Verifica se há arquivos .pacnew/.pacsave pendentes
     local FIND_PACNEW=$(find /etc -regextype posix-extended -regex ".*\.pac(new|save)" 2>/dev/null)
     if [ -n "$FIND_PACNEW" ]; then
         echo -e "\n⚠️  [Atenção] Existem arquivos .pacnew/.pacsave pendentes de revisão:"
@@ -51,7 +60,6 @@ dar_uma_geral() {
         sudo pacman -Sc --noconfirm
     fi
 
-    # Limpa cache do AUR/yay
     if command -v yay &> /dev/null; then
         yay -Sc --noconfirm
     fi
