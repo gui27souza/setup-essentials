@@ -5,10 +5,8 @@
 
 checar_geral() {
 
-    echo -e ""
-
     if ! command -v checkupdates &> /dev/null; then
-        echo -e "⚠️  Instale 'pacman-contrib' para usar essa checagem: sudo pacman -S pacman-contrib"
+        log_warn "⚠️  Instale 'pacman-contrib' para usar essa checagem: sudo pacman -S pacman-contrib"
         return 1
     fi
 
@@ -21,38 +19,18 @@ checar_geral() {
 
     local total_updates=$((repo_updates + aur_updates))
 
-    echo -e "--------------------------------------------------"
     if [ "$total_updates" -gt 0 ]; then
-        echo -e "📦 \033[1;33m$total_updates atualizações pendentes\033[0m ($repo_updates oficial, $aur_updates AUR). (Rode 'dar_uma_geral' quando quiser)"
+        with_separator log_warn "📦 $total_updates atualizações pendentes ($repo_updates oficial, $aur_updates AUR). (Rode 'dar_uma_geral' quando quiser)"
     else
-        echo -e "✨ \033[1;32mSistema totalmente atualizado!\033[0m"
+        with_separator log_info "✨ Sistema totalmente atualizado!"
     fi
-    echo -e "--------------------------------------------------"
 
-    # Sincroniza e verifica se há novos pacotes para adicionar aos pkg lists
-    echo -e "\n==="
-    echo -e "\n--------------------------------------------------"
-    sync_pkglist
-    echo "--------------------------------------------------"
+    with_separator sync_pkglist
+    with_separator quality_gate
+    with_separator check_kde_status
+    with_separator check_dotfiles_status
 
-    # Validações de integridade do repositório (Quality Gate)
-    echo -e "\n==="
-    echo -e "\n--------------------------------------------------"
-    quality_gate
-    echo "--------------------------------------------------"
+    with_separator log_info "✨ Checagem geral concluída com sucesso!"
 
-    echo -e "\n==="
-    echo -e "\n--------------------------------------------------"
-    check_kde_status
-    echo "--------------------------------------------------"
-
-    echo -e "\n==="
-    echo -e "\n--------------------------------------------------"
-    check_dotfiles_status
-    echo "--------------------------------------------------"
-
-    echo -e "\n==="
-    echo -e "\n--------------------------------------------------"
-    echo -e "✨ Checagem geral concluída com sucesso!"
-    echo "--------------------------------------------------\n"
+    echo -e ""
 }
