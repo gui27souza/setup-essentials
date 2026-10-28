@@ -1,8 +1,5 @@
 # ZSH_DESC - Realiza o setup do tuigreet usando o greetd base
 
-ensure_command "ensure_package_pacman"
-ensure_command "ensure_package_yay"
-
 setup_tuigreet() {
 
     ensure_package_pacman greetd

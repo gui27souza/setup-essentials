@@ -4,11 +4,6 @@
 # sincroniza a lista de pacotes instalados e valida as configs/módulos do repositório.
 
 checar_geral() {
-    ensure_command "ensure_command"
-    ensure_command "quality_gate"
-    ensure_command "sync_pkglist"
-    ensure_command "check_kde_status"
-    ensure_command "check_dotfiles_status"
 
     echo -e ""
 

@@ -1,9 +1,6 @@
 # ZSH_DESC - Sincroniza estado do repositório local commitando no remoto após passar pelo Quality Gate
 
 sync_dotfiles() {
-    ensure_command "ensure_command"
-    ensure_command "sync_pkglist"
-    ensure_command "quality_gate"
 
     local DOTFILES_DIR="${SETUP_ESSENTIALS_DIR:-$HOME/.config/zsh/../../../..}"
     echo "==> 🚀 Sincronizando dotfiles..."

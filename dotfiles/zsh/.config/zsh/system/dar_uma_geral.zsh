@@ -1,8 +1,6 @@
 # ZSH_DESC - Realiza atualização geral de pacotes de forma segura com snapshot de emergência
 
 dar_uma_geral() {
-    ensure_command "ensure_command"
-    ensure_command "check_dotfiles_status"
 
     echo "==> 🧹 Iniciando a geral no sistema..."
 

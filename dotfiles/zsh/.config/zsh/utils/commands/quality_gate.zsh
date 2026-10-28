@@ -1,7 +1,6 @@
 # ZSH_DESC - Executa validações de qualidade e consistência nos scripts zsh e dotfiles
 
 quality_gate() {
-    ensure_command "ensure_command"
 
     local base_dir="${SETUP_ESSENTIALS_DIR:-$HOME/.config/zsh/../../../..}"
     local zsh_dir="$HOME/.config/zsh"
