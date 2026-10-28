@@ -4,7 +4,7 @@
 # ==============================================================================
 
 [display]
-show_time = true
+show_time = false
 time_format = "%Y-%m-%d %H:%M"
 greeting = "Arch Larper 27000"
 align_greeting = "center"
@@ -58,9 +58,9 @@ mutate_chance = 0.02
 [background.doom]
 height = 9                     # 1-9 (altura das chamas)
 spread = 4                     # 0-4 (variação horizontal)
-top_color = "#2d1d7d"
-middle_color = "#163989"
-bottom_color = "#011c5a"
+top_color = "cyan"
+middle_color = "bright-blue"
+bottom_color = "blue"
 
 [session]
 sessions_dirs = ["/usr/share/wayland-sessions", "/usr/share/xsessions"]
