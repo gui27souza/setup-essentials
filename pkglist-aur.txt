@@ -1,5 +1,6 @@
 antigravity-cli
 google-chrome
+greetd-tuigreet
 hunspell-pt-br
 kgamma
 konsave

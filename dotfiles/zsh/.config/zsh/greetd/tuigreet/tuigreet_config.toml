@@ -1,0 +1,96 @@
+# ==============================================================================
+# TUIGREET COMPLETE CONFIGURATION PLAYGROUND
+# Hot-reload habilitado: edite e salve para ver no --mock instantaneamente!
+# ==============================================================================
+
+[display]
+show_time = true
+time_format = "%Y-%m-%d %H:%M"
+greeting = "Arch Larper 27000"
+align_greeting = "center"
+# Exibe o conteúdo do /etc/issue se true
+issue = false
+
+[layout]
+width = 60
+window_padding = 2
+container_padding = 2
+prompt_padding = 1
+
+[layout.widgets]
+time_position = "top"           # "top", "bottom", "default", "hidden"
+status_position = "bottom"      # "top", "bottom", "default", "hidden"
+
+[remember]
+username = true
+session = false
+user_session = true
+
+[secret]
+mode = "characters"             # "characters" ou "hidden"
+characters = "*"
+
+[user_menu]
+enabled = false                 # Exibe lista interativa de usuários
+min_uid = 1000
+max_uid = 60000
+
+[keybindings]
+command = 2                    # F2
+sessions = 3                   # F3
+background = 4                 # F4
+power = 12                     # F12
+
+[background]
+kind = "doom"                 # "matrix", "doom" ou "none"
+fps = 60
+
+[background.matrix]
+head_color = "#CCFFCC"
+bright_color = "#004381"
+dim_color = "#240066"
+min_length = 8
+max_length = 20
+min_speed = 0.30
+max_speed = 1.10
+mutate_chance = 0.02
+
+[background.doom]
+height = 9                     # 1-9 (altura das chamas)
+spread = 4                     # 0-4 (variação horizontal)
+top_color = "#2d1d7d"
+middle_color = "#163989"
+bottom_color = "#011c5a"
+
+[session]
+sessions_dirs = ["/usr/share/wayland-sessions", "/usr/share/xsessions"]
+xsessions_dirs = []
+environments = []
+# default_session = "uwsm"     # Regex ou nome para forçar sessão padrão
+# session_command = ""         # Comando customizado para iniciar sessão
+# session_wrapper = ""         # Wrapper para sessões Wayland
+# xsessions_wrapper = ""       # Wrapper para sessões X11
+
+[power]
+use_setsid = false
+# power_shutdown = "shutdown -h now"
+# power_reboot = "shutdown -r now"
+# power_suspend = "loginctl suspend"
+# power_hibernate = "loginctl hibernate"
+
+[terminal]
+vt = 1
+# cols = 120                   # Override manual de colunas TTY
+# rows = 40                    # Override manual de linhas TTY
+
+[theme]
+border = "#7aa2f7"
+text = "#c0caf5"
+title = "#bb9af7"
+greet = "#7dcfff"
+prompt = "#7676f7"
+input = "#c0caf5"
+action = "#6a92ce"
+button = "#68e0ba"
+container = "#1a1b26"
+time = "#7dcfff"
