@@ -21,7 +21,7 @@ checar_geral() {
 
     local total_updates=$((repo_updates + aur_updates))
 
-    echo -e "\n--------------------------------------------------"
+    echo -e "--------------------------------------------------"
     if [ "$total_updates" -gt 0 ]; then
         echo -e "📦 \033[1;33m$total_updates atualizações pendentes\033[0m ($repo_updates oficial, $aur_updates AUR). (Rode 'dar_uma_geral' quando quiser)"
     else
