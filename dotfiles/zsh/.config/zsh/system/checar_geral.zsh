@@ -21,31 +21,38 @@ checar_geral() {
 
     local total_updates=$((repo_updates + aur_updates))
 
+    echo -e "\n--------------------------------------------------"
     if [ "$total_updates" -gt 0 ]; then
         echo -e "📦 \033[1;33m$total_updates atualizações pendentes\033[0m ($repo_updates oficial, $aur_updates AUR). (Rode 'dar_uma_geral' quando quiser)"
     else
         echo -e "✨ \033[1;32mSistema totalmente atualizado!\033[0m"
     fi
+    echo -e "--------------------------------------------------"
 
     # Sincroniza e verifica se há novos pacotes para adicionar aos pkg lists
-    if command -v sync_pkglist &> /dev/null; then
-        echo -e "\n--------------------------------------------------"
-        sync_pkglist
-    fi
+    echo -e "\n==="
+    echo -e "\n--------------------------------------------------"
+    sync_pkglist
+    echo "--------------------------------------------------"
 
     # Validações de integridade do repositório (Quality Gate)
-    if command -v quality_gate &> /dev/null; then
-        echo -e "\n--------------------------------------------------"
-        quality_gate
-    fi
+    echo -e "\n==="
+    echo -e "\n--------------------------------------------------"
+    quality_gate
+    echo "--------------------------------------------------"
 
+    echo -e "\n==="
     echo -e "\n--------------------------------------------------"
     check_kde_status
     echo "--------------------------------------------------"
 
+    echo -e "\n==="
     echo -e "\n--------------------------------------------------"
     check_dotfiles_status
     echo "--------------------------------------------------"
 
-    echo -e "\n✨ Checagem geral concluída com sucesso!"
+    echo -e "\n==="
+    echo -e "\n--------------------------------------------------"
+    echo -e "✨ Checagem geral concluída com sucesso!"
+    echo "--------------------------------------------------\n"
 }

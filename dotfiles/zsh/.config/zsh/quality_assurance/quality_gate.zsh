@@ -92,7 +92,6 @@ quality_gate() {
     # ---------------------------------------------------------
     # Resumo Final
     # ---------------------------------------------------------
-    echo "\n--------------------------------------------------"
     if (( errors > 0 )); then
         echo "💥 Quality Gate FALHOU! ($errors erro(s), $warnings aviso(s))"
         return 1
