@@ -9,7 +9,7 @@ sync_pkglist() {
     # Cria os arquivos caso não existam
     touch "$pkg_official" "$pkg_aur" "$pkg_ignore"
 
-    echo "==> 🔍 Verificando novos pacotes instalados no sistema..."
+    log_neutral "🔍 Verificando novos pacotes instalados no sistema..."
 
     # Captura pacotes instalados explicitamente (exclui dependências automáticas)
     local installed_official=($(pacman -Qnetq))
@@ -30,21 +30,21 @@ sync_pkglist() {
                 continue
             fi
 
-            echo -e "\n📦 Pacote novo ($type_label): \033[1;33m$pkg\033[0m"
-            echo -n "Deseja adicionar ao $type_label [a], ignorar pra sempre [i], ou pular por enquanto [s]? (a/i/s): "
+            log_info "\n📦 Pacote novo ($type_label): \033[1;33m$pkg\033[0m"
+            log_info -n "Deseja adicionar ao $type_label [a], ignorar pra sempre [i], ou pular por enquanto [s]? (a/i/s): "
             read -r choice < /dev/tty
 
             case "$choice" in
                 a|A)
-                    echo "$pkg" >> "$target_file"
-                    echo "  ✅ Adicionado ao $target_file"
+                    log_step "$pkg" >> "$target_file"
+                    log_success "  ✅ Adicionado ao $target_file"
                     ;;
                 i|I)
-                    echo "$pkg" >> "$pkg_ignore"
-                    echo "  🚫 Adicionado ao $pkg_ignore"
+                    log_step "$pkg" >> "$pkg_ignore"
+                    log_error "  🚫 Adicionado ao $pkg_ignore"
                     ;;
                 *)
-                    echo "  ⏭️  Pulado."
+                    log_step "  ⏭️  Pulado."
                     ;;
             esac
         done
@@ -59,5 +59,5 @@ sync_pkglist() {
     sort -u "$pkg_aur" -o "$pkg_aur"
     sort -u "$pkg_ignore" -o "$pkg_ignore"
 
-    echo -e "\n✨ Listas de pacotes atualizadas com sucesso!"
+    log_success "\n✅ Listas de pacotes atualizadas com sucesso!"
 }

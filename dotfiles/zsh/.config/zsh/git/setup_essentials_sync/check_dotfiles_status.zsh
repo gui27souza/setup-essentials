@@ -4,12 +4,12 @@ check_dotfiles_status() {
     local DOTFILES_DIR="$SETUP_ESSENTIALS_DIR"
     if [ -d "$DOTFILES_DIR/.git" ]; then
         if [ -n "$(git -C "$DOTFILES_DIR" status --porcelain 2>/dev/null)" ]; then
-            echo -e "\033[0;33m⚠️  [Dotfiles] Há alterações pendentes no repositório!\033[0m"
-            echo -e "\033[0;36m👉 Rode 'sync_dotfiles' para atualizar o repositório remoto.\033[0m"
-            echo -e "\n\033[0;36mMudanças não commitadas:\033[0m\n"
+            log_warn "⚠️ [setup-essentials] Há alterações pendentes no repositório!\n"
+            log_obs "👉 Rode 'sync_dotfiles' para atualizar o repositório remoto.\n"
+            log_neutral "Mudanças não commitadas:"
             setup_essentials_git_status
         else
-            echo -e "\033[0;32m✅ [Dotfiles] Repositório sincronizado e atualizado.\033[0m"
+            log_success "✅ [setup-essentials] Repositório sincronizado e atualizado."
         fi
     fi
 }
