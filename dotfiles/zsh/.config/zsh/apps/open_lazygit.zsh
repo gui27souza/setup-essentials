@@ -1,5 +1,5 @@
-# ZSH_DESC - Abre o lazygit em uma nova janela do terminal. Usa open_with_new_konsole
+# ZSH_DESC - Abre o lazygit em uma nova janela do terminal
 
 open_lazygit() {
-    open_with_new_konsole lazygit
+    open_with_new_kitty lazygit
 }
