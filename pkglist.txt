@@ -1,3 +1,5 @@
+[01m[35mfeh[00m
+[01m[35mgimagereader-gtk[00m
 ark
 aspell-pt
 base
