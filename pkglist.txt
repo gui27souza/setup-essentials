@@ -12,8 +12,10 @@ cmatrix
 dolphin
 doxygen
 dunst
+feh
 firefox
 flatpak-kcm
+gimagereader-gtk
 gimp
 gparted
 greetd
