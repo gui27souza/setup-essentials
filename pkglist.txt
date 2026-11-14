@@ -58,6 +58,7 @@ qalculate-qt
 radeontop
 refind
 sddm-kcm
+sl
 sof-firmware
 spectacle
 spotify-launcher
