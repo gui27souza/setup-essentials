@@ -34,6 +34,7 @@ krdp
 kwallet-pam
 kwrited
 lazygit
+libreoffice-fresh
 linux-lts
 mousepad
 nano
