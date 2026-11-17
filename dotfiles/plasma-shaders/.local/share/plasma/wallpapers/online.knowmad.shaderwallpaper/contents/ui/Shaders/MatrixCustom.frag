@@ -3,11 +3,11 @@
 // @texture0 Resources/Font_Set.png
 // @texture1 Resources/Shadertoy_RGBA_Noise_Small.png
 
-#define CELL_SIZE 20.0
-#define FALL_SPEED 0.45
-#define FLICKER_SPEED 0.001
-#define TRAIL_LENGTH 14.0
-#define RAIN_COLOR vec3(0.1, 1.0, 0.35)
+#define CELL_SIZE 16.0
+#define FALL_SPEED 0.25
+#define FLICKER_SPEED 0.0001
+#define TRAIL_LENGTH 10.0
+#define RAIN_COLOR vec3(0.1, 0.35, 1.0)
 
 float text(vec2 fragCoord)
 {
