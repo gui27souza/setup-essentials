@@ -1,0 +1,67 @@
+# ==============================================================================
+# pkglist-critical.txt
+# Lista de pacotes críticos do sistema (Kernel, Boot, Btrfs, GPU AMD, WMs).
+# Linhas iniciadas com '#' e linhas em branco são ignoradas pelos scripts.
+# ==============================================================================
+
+# --- Kernel, Firmware & Microcode ---
+amd-ucode
+intel-ucode
+linux
+linux-firmware
+linux-firmware-whence
+linux-hardened
+linux-headers
+linux-lts
+linux-lts-headers
+linux-zen
+linux-zen-headers
+mkinitcpio
+
+# --- Bootloader & Sistema de Arquivos ---
+btrfs-progs
+efibootmgr
+refind
+snapper
+
+# --- Core do Sistema & Sessão ---
+dbus
+glibc
+polkit
+systemd
+systemd-libs
+systemd-sysvcompat
+
+# --- Stack de Vídeo AMD (Mesa/RADV), Wayland & Áudio ---
+lib32-mesa
+lib32-vulkan-radeon
+libva-mesa-driver
+mesa
+pipewire
+pipewire-pulse
+vulkan-radeon
+wayland
+wireplumber
+xf86-video-amdgpu
+
+# --- Window Managers, Login & Portais ---
+greetd
+greetd-tuigreet
+hyprland
+hyprpaper
+hyprpolkitagent
+kwin
+plasma-desktop
+plasma-login-manager
+sddm
+xdg-desktop-portal
+xdg-desktop-portal-hyprland
+xdg-desktop-portal-kde
+
+# --- Rede & Conectividade ---
+bluez
+bluez-utils
+iwd
+networkmanager
+
+# --- Adicionados via sync_pkglist ---

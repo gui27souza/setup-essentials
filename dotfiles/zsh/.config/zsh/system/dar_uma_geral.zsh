@@ -4,6 +4,11 @@ dar_uma_geral() {
 
     echo "==> 🧹 Iniciando a geral no sistema..."
 
+    # 0. Panorama detalhado dos pacotes que serão atualizados
+    echo ""
+    check_updates
+    echo -e "\n--------------------------------------------------"
+
     # 1. Guardrail de Snapshot: Btrfs / Snapper antes de mexer no sistema
     if command -v snapper &>/dev/null; then
         echo -e "\n📸 Criando snapshot Btrfs de segurança pré-upgrade..."
