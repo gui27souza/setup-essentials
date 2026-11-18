@@ -2,7 +2,6 @@
 
 set_matrix_shader_wallpaper() {
 
-    local plugin_ui_dir="$HOME/.local/share/plasma/wallpapers/online.knowmad.shaderwallpaper/contents/ui"
     local shader_file="$SETUP_ESSENTIALS_DIR/kde/shaders/MatrixCustom.frag"
 
     # Lista de opções pre-existentes - azul, ciano, vermelho, verde, verde-agua, roxo, ambar, branco
@@ -21,4 +20,11 @@ set_matrix_shader_wallpaper() {
 
     # Atualizar wallpaper
     reload_current_shader_wallpaper
+
+    local hex_color
+    hex_color="$(color_float_to_hex "$tempColor")" || return 1
+
+    plasma-apply-colorscheme --accent-color "$hex_color" BreezeDark
+    sleep 0.1
+    dbus-send --session --type=signal /KGlobalSettings org.kde.KGlobalSettings.notifyChange int32:0 int32:0
 }
