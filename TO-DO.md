@@ -30,6 +30,8 @@ Como o seu SSD externo está formatado em Btrfs (com subvolumes @, @home), você
 
 ### Novos Comandos de Produtividade para o esquecii
 
+- Modo interativo no `esquecii` (`esquecii -i` com `fzf` + `print -z`)
+    - Abre a lista de comandos no `fzf` e, ao dar Enter, preenche o comando escolhido direto no prompt do terminal (`print -z`) pronto para rodar ou passar argumentos.
 - system/saude_ssd.zsh (Guardião do SSD Externo)
     - Como o sistema vive num SSD USB, a saúde do disco e a integridade da conexão são vitais.
     - Executa um smartctl rápido para monitorar temperatura, vida útil do SSD e roda um btrfs scrub passivo para garantir que nenhum bloco de dados foi corrompido por desconexões
