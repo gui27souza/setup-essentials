@@ -7,7 +7,7 @@
 #define FALL_SPEED 0.1
 #define FLICKER_SPEED 0.00001
 #define TRAIL_LENGTH 20.0
-#define RAIN_COLOR vec3(1.0, .53, 0)
+#define RAIN_COLOR vec3(1, 1.0, 1)
 
 float text(vec2 fragCoord)
 {
