@@ -2,7 +2,9 @@
 
 set_matrix_shader_wallpaper() {
 
+    local shader_base="$SETUP_ESSENTIALS_DIR/kde/shaders/MatrixCustom.base.frag"
     local shader_file="$SETUP_ESSENTIALS_DIR/kde/shaders/MatrixCustom.frag"
+    [[ -f "$shader_file" ]] || cp "$shader_base" "$shader_file"
 
     local inputColor="$1"
 
