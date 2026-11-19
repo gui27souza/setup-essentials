@@ -81,7 +81,7 @@ check_updates() {
         local lines=("$@")
         local item pkg old_ver arrow new_ver name_color crit_badge desc
 
-        echo -e "\n${L_BOLD}${L_MAGENTA}=== ${group_title} (${#lines}) ===${L_RESET}"
+        log_obs "\n=== ${group_title} (${#lines}) ==="
 
         for item in "${lines[@]}"; do
             read -r pkg old_ver arrow new_ver <<< "$item"
@@ -103,7 +103,7 @@ check_updates() {
             desc="${desc_map[$pkg]:-Sem descrição local disponível}"
 
             echo -e "\n  • ${name_color}${pkg}${L_RESET}${crit_badge} (${L_YELLOW}${old_ver}${L_RESET} -> ${L_BOLD}${L_GREEN}${new_ver}${L_RESET})"
-            echo -e "    ${L_WHITE}└─ ${desc}${L_RESET}"
+            log_neutral "    └─ ${desc}"
         done
     }
 
