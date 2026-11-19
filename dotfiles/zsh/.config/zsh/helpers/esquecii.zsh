@@ -29,7 +29,7 @@ esquecii() {
         description=${description#\# ZSH_DESC - }
 
         if _matches_filter "$file" "$description"; then
-            echo -e "${indent}${L_BOLD}${L_CYAN}${cmd_name}${L_RESET} - ${L_WHITE}${description}${L_RESET}"
+            log_info "${indent}${cmd_name}${L_RESET} - ${L_WHITE}${description}"
             return 0
         fi
         return 1
@@ -55,9 +55,9 @@ esquecii() {
             sub_out="$(_recursive_scan "$sub" $(( depth + 1 )))"
             if [[ -n "$sub_out" ]]; then
                 has_content=1
-                echo -e "\n${indent}${L_BOLD}${L_MAGENTA}= ${sub##*/} ===${L_RESET}"
+                log_obs "\n${indent}= ${sub##*/} ==="
                 echo -e "$sub_out"
-                echo -e "${indent}${L_BOLD}${L_MAGENTA}==${L_RESET}"
+                log_obs "${indent}=="
             fi
         done
 
@@ -80,9 +80,9 @@ esquecii() {
             dir_out="$(_recursive_scan "$dir" 1)"
             if [[ -n "$dir_out" ]]; then
                 found_any=1
-                echo -e "\n${L_BOLD}${L_MAGENTA}= ${dir##*/} =====${L_RESET}"
+                log_obs "\n= ${dir##*/} ====="
                 echo -e "$dir_out"
-                echo -e "${L_BOLD}${L_MAGENTA}===${L_RESET}"
+                log_obs "==="
             fi
         done
     } always {
