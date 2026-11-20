@@ -37,6 +37,7 @@ linux-lts
 mousepad
 nano
 network-manager-applet
+obs-studio
 ollama-rocm
 oxygen
 oxygen-sounds
